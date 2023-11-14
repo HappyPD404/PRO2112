@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Title</title>
+</head>
+<style>
+    
+
+/* Nút Để Mở Chatbox */
+.nut-mo-chatbox {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* Ẩn chatbox mặc định */
+.Chatbox {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Thêm style cho form */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* thiết lập style textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 100px;
+}
+
+/*thiết lập style cho textarea khi được focus */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Sthiết lập style cho nút trong form*/
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Thiết lập màu nền cho nút đóng chatbox */
+.form-container .nut-dong-chatbox {
+  background-color: red;
+}
+
+/* Thêm hiệu ứng hover cho nút*/
+.form-container .btn:hover, .nut-mo-chatbox:hover {
+  opacity: 1;
+}
+    .feedback-form {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+
+    .feedback-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .feedback-form input[type="text"],
+    .feedback-form textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        resize: vertical;
+    }
+
+    .feedback-form button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #569558;
+        color: white;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
+    */ .third-nav {
+        background-color: #f8f8f8;
+        padding: 15px 0;
+    }
+
+    .breadcrumb.txt {
+        color: #333;
+    }
+
+    .contact-result {
+        margin-top: 15px;
+    }
+
+    .block_bussiness {
+        margin-top: 30px;
+    }
+
+    .bussiness h1 {
+        color: #333;
+    }
+
+    .bussiness a {
+        color: #333;
+    }
+
+    .bussiness a:hover {
+        color: #ff6600;
+    }
+
+    .bussiness .mb-5 {
+        margin-bottom: 15px;
+    }
+
+    /* Bo góc */
+    .col-sm-6 {
+        border-radius: 5px;
+    }
+
+    /* Cho web chạy */
+
+    .col-sm-6-wrapper {
+        border-radius: 5px;
+        overflow: hidden;
+        animation: animateIn 2s ease-in-out;
+    }
+
+
+    @keyframes animateIn {
+        0% {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .mb-5 {
+        border-radius: 100px solid aqua;
+        box-shadow: 5px #ff6600;
+        transition: 5s;
+
+    }
+    
+
+    /* .running-text {
+    position: relative;
+  } */
+</style>
+
+<body>
+    <div class="py-5">
+      <div class="page-header-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<div class="page-header-content">
+							<nav class="breadcrumb-area">
+								<ul class="breadcrumb">
+									<li>
+										<a href="/">Trang chủ</a>
+									</li>
+									<li class="breadcrumb-sep">/</li>
+									<li>Hỗ trợ</li>
+								</ul>
+							</nav>
+							<h4 class="title"></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <div class="container">
+        <div class="row">
+            <!-- <div class="running-text"> -->
+            <div class="">
+                <center><H1 >Hỗ Trợ</H1></center>
+                <div class="feedback-form">
+                    
+                        <p>Happy Cosmetic luôn tôn trọng khách hàng, lấy niềm vui, sự hài lòng của khách hàng để làm động lực, không
+                            ngừng tìm kiếm các sản phẩm tốt nhất để mỗi khách hàng đều có thể trở nên tự tin và xinh đẹp
+                            hơn. Các hãng thương hiệu mỹ phẩm ở Happy Cosmetic luôn là các thương hiệu uy tín, được mọi người tin
+                            dùng như từ Mỹ, Châu Âu, Nhật, Hàn</p>
+                        <p>Bên cạnh đó khi mua hàng ở Happy Cosmetic , khách luôn được giá ưu đãi tốt nhất, dịch vụ nhanh chóng
+                            &amp; nhiều chương trình Khuyến Mãi khác.</p>
+                        <p>Nếu quý khách có nhu cầu hỗ trợ xin hãy gửi mail hoặc liên hệ hotline:</p>
+                        <p>Hotline: 0773377124</p>
+                        <p>Gmail:...</p>
+                    
+                    
+                    <h2 class="text-center">Gửi phản hồi hỗ trợ</h2>
+                    <form class="panel-body loadContactForm" id="feedbackform">
+                        <div class="form-group">
+                            <label for="name">Họ và tên khách hàng</label>
+                            <input name="userName" type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input name="email" type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung</label>
+                            <textarea name="message" class="form-control" id="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Gửi góp ý</button>
+                    </form>
+                </div>
+                <div class="contact-result alert"></div>
+
+            </div>
+
+
+
+            
+        </div>
+    </div>
+    <!--https://www.niemvuilaptrinh.com/-->
+    <button class="nut-mo-chatbox" onclick="moForm()">Chat</button>
+    <div class="Chatbox" id="myForm">
+        <form action="" class="form-container">
+            <h1>Chatbox</h1>
+    
+            <label for="msg"><b>Lời Nhắn</b></label>
+            <textarea placeholder="Bạn hãy nhập lời nhắn.." name="msg" required></textarea>
+    
+            <button type="submit" class="btn">Gửi</button>
+            <button type="button" class="btn nut-dong-chatbox" onclick="dongForm()">Đóng</button>
+        </form>
+    </div>
+
+    <script>
+
+        const runningText = document.querySelector('.running-text');
+        let position = 0;
+
+        setInterval(() => {
+            position += 1;
+            runningText.style.left = '${position}px';
+
+            if (position >= window.innerWidth) {
+                position = -runningText.offsetWidth;
+            }
+        }, 10);
+        /*Hàm Mở Form*/
+            function moForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+            /*Hàm Đóng Form*/
+            function dongForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+    </script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>
