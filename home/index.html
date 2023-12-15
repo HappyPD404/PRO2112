@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{shop/layout.html}">
+
+<head>
+	<title>Trang chủ</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+
+		<div class="mb-lg-2"></div>
+
+		<div class="container-fluid">
+			<div class="row border-top px-xl-5">
+				<div class="col-lg-3 d-none d-lg-block">
+
+					<!-- <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">Danh mục </h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                    <div class="navbar-nav w-100 overflow-hidden" style="height: 500px">
+                    
+                     <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Trang điểm -MAKEUP<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Che khuyết điểm - Conceaier</a>
+                                <a href="" class="dropdown-item">Kẻ mắt - Eyeliner</a>
+                                <a href="" class="dropdown-item">Kẻ mày - Eyebrown </a>
+                                <a href="" class="dropdown-item">Kem lot - Makeup Pmer </a>
+                                <a href="" class="dropdown-item">Kem nền - BB - CC </a>
+                                <a href="" class="dropdown-item">Mascara </a> 	
+                                <a href="" class="dropdown-item">Phấn mắt - Phấn má  </a>
+                                <a href="" class="dropdown-item">Phấn nước -Cushion </a>
+                                <a href="" class="dropdown-item">Phấn phủ- Power</a>
+                            </div>
+                            </div>
+                            
+                            
+                               <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Son môi-LIPS<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Sản phẩm chăm sóc môi</a>
+                                <a href="" class="dropdown-item">Son dưỡng - LIP BALM</a>
+                                <a href="" class="dropdown-item">Son kem - LIP TINT </a>
+                                <a href="" class="dropdown-item">Son thỏi - LIPSTICK </a>
+                            </div>
+                            </div>
+                            
+                            
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Chăm sóc cơ thể-BODY CARE <i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-200 m-0">
+                                <a href="" class="dropdown-item">Body Mist</a>
+                                <a href="" class="dropdown-item">Dung dịch vệ sinh</a>
+                                <a href="" class="dropdown-item">Kem tan mỡ-Trị rạn-Viêm nang lông</a>
+                                <a href="" class="dropdown-item">Lăn xịt khử mùi-Deodorent Roller</a>
+                                <a href="" class="dropdown-item">Sữa tắm-Shower Gel</a>
+                                <a href="" class="dropdown-item">Tẩy da chết body-Body Scrus</a>
+                                <a href="" class="dropdown-item">Tẩy lông-Waxing Cream</a>
+                                <a href="" class="dropdown-item">Xà phòng-Soap</a>
+                            </div>
+                        </div>
+                        
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Chăm sóc da- SKINCARE<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Kem chống nắng-Suncreen</a>
+                                <a href="" class="dropdown-item">Kem dưỡng-Faclal Cream</a>
+                                <a href="" class="dropdown-item">Kem mắt-Eye Cream</a>
+                                <a href="" class="dropdown-item">Kem trị mụn-Acne Treatment</a>
+                                <a href="" class="dropdown-item">Kem trị sẹo-Trị nám</a>
+                                <a href="" class="dropdown-item">Mặt nạ-Mark</a>
+                                <a href="" class="dropdown-item">Nước hoa hồng-Toner</a>
+                                <a href="" class="dropdown-item">Serum</a>
+                                <a href="" class="dropdown-item">Sữa dưỡng-Lotion</a>
+                                <a href="" class="dropdown-item">Sửa rửa mặt-Cleansing Foam</a>
+                                <a href="" class="dropdown-item">Tẩy da chết-Scrub</a>
+                                <a href="" class="dropdown-item">Tẩy trang-Micelar Water</a>
+                                <a href="" class="dropdown-item">Xịt khoáng-Facial Mist</a>
+                            </div>
+                           </div>
+                            <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Chăm sóc tóc-HAIR<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                  <a href="" class="dropdown-item">Dầu gội-xả</a>
+                                <a href="" class="dropdown-item">Dưỡng tóc</a>
+                                <a href="" class="dropdown-item">Thuốc nhuộm tóc-Hair Dye</a>
+                                <a href="" class="dropdown-item">Ủ tóc</a>
+                            </div>
+                          </div>
+                          <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Dụng cụ-TOOLS<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Bông tẩy trang</a>
+                                <a href="" class="dropdown-item">Bông trang điểm </a>
+                                <a href="" class="dropdown-item">Cọ trang điểm</a>
+                                <a href="" class="dropdown-item">Dụng cụ chăm sóc da</a>
+                                <a href="" class="dropdown-item">Giấy thấm dầu</a>
+                                <a href="" class="dropdown-item">Kẹp mi-Dao cạo</a>
+                                <a href="" class="dropdown-item">Mi giả- Kích mi</a>
+                                <a href="" class="dropdown-item">Túi-Bộ chiết mỹ phẩm</a>
+                            </div>
+                             </div>
+                           <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Nước hoa-PERFUME<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Nước hoa body</a>
+                                <a href="" class="dropdown-item">Nước hoa vùng kín </a>
+                            </div>
+                            </div>     
+                            
+                             <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Sản phẩm khác-OTHERS<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="" class="dropdown-item">Các sản phẩm khác</a>
+                                <a href="" class="dropdown-item">Kem đánh răng-Toothpaste </a>
+                                <a href="" class="dropdown-item">Trà giảm cân </a>
+                                <a href="" class="dropdown-item">Viên uống DHC </a>
+                                <a href="" class="dropdown-item">Vitamin-Viên cấp nước-Trắng da </a>
+                                <a href="" class="dropdown-item">Xịt thơm quần áo-Fabric Mist </a>
+                            </div>
+                            </div>
+                            
+                    </div> -->
+					<div class="col-auto col-lg-3 col-xl-3 col-xxl-2 header-left">
+						<div class="dropdown category-dropdown is-on" data-visible="false">
+							<a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="true" data-display="static"
+								title="Danh mục sản phẩm">Danh mục sản phẩm </a>
+							<div class="dropdown-menu">
+								<nav class="side-nav">
+									<ul class="menu-vertical sf-arrows" id="menu__item__data">
+										<!-- Danh sách danh mục -->
+										<li><a href="#">Danh mục sản phẩm</a></li>
+									</ul>
+									<!-- End .menu-vertical -->
+								</nav>
+							</div>
+						</div>
+					</div>
+					</nav>
+				</div>
+				<div class="col-lg-9">
+					<div id="header-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active" style="height: 500px;">
+								<img class="img-fluid" th:src="@{/shop/assets/images/logo/Cosmetic4.jpg}" alt="Image">
+								<div
+									class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 500px;">
+										<h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm 10% cho đơn
+											hàng đầu tiên</h4>
+										<h3 class="display-4 text-white font-weight-semi-bold mb-4">Hàng chính hãng</h3>
+										<a href="" class="btn btn-light py-2 px-3">Mua sắm ngay bây giờ</a>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item" style="height: 500px;">
+								<img class="img-fluid" th:src="@{/shop/assets/images/logo/Cosmetic3.jpg}" alt="Image">
+								<div
+									class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+									<div class="p-3" style="max-width: 500px;">
+										<h4 class="text-light text-uppercase font-weight-medium mb-3">Mua hàng ngay nhận
+											nhiều ưu đãi</h4>
+										<h3 class="display-4 text-white font-weight-semi-bold mb-4">Giảm 10% cho các đơn
+											hàng trên 500k</h3>
+										<a href="" class="btn btn-light py-2 px-3">Mua sắm ngay bây giờ</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+							<div class="btn btn-dark" style="width: 45px; height: 45px;">
+								<span class="carousel-control-prev-icon mb-n2"></span>
+							</div>
+						</a>
+						<a class="carousel-control-next" href="#header-carousel" data-slide="next">
+							<div class="btn btn-dark" style="width: 45px; height: 45px;">
+								<span class="carousel-control-next-icon mb-n2"></span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- End .row -->
+		</div>
+		<!-- End .container-fluid -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-9 col-xxl-10">
+					<div class="row">
+						<div class="col-lg-12 col-xxl-4-5col">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="banner banner-overlay">
+										<a href="#"> <img
+												th:src="@{/shop/assets/images/demos/demo-14/banners/banner-2.jpg}"
+												alt="Banner img desc">
+										</a>
+
+										<div class="banner-content">
+											<h4 class="banner-subtitle text-white d-none d-sm-block">
+												<a href="#">Siêu giảm giá</a>
+											</h4>
+											<!-- End .banner-subtitle -->
+											<h3 class="banner-title text-white">
+												<a href="#">Sản phẩm làm đẹp <br>Mùa hè <br> <span>Giảm
+														20%</span></a>
+											</h3>
+											<!-- End .banner-title -->
+											<a th:href="@{/beauty/shop}" class="banner-link">Cửa hàng
+												<i class="icon-long-arrow-right"></i>
+											</a>
+										</div>
+										<!-- End .banner-content -->
+									</div>
+									<!-- End .banner -->
+								</div>
+								<!-- End .col-md-6 -->
+
+								<div class="col-md-6">
+									<div class="banner banner-overlay">
+										<a href="#"> <img style="height: 235px"
+												th:src="@{/shop/assets/images/logo/3.jpg}" alt="Banner img desc">
+										</a>
+
+										<div class="banner-content">
+											<h4 class="banner-subtitle text-white d-none d-sm-block">
+												<a href="#">Giảm giá trong ngày</a>
+											</h4>
+											<!-- End .banner-subtitle -->
+											<h3 class="banner-title text-white">
+												<a href="#">Bộ Makeup siêu hot <br> <span>Giảm 30%</span></a>
+											</h3>
+											<!-- End .banner-title -->
+											<a th:href="@{/beauty/shop}" class="banner-link">Cửa hàng
+												<i class="icon-long-arrow-right"></i>
+											</a>
+										</div>
+										<!-- End .banner-content -->
+									</div>
+									<!-- End .banner banner-overlay -->
+								</div>
+								<!-- End .col-md-6 -->
+							</div>
+							<!-- End .row -->
+						</div>
+
+					</div>
+					<!-- End .row -->
+
+					<div class="mb-3"></div>
+					<!-- End .mb-3 -->
+
+					<div class="owl-carousel owl-simple brands-carousel" data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": false,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                          "items":3
+                                    },
+                                    "420": {
+                                        "items":4
+                                    },
+                                    "600": {
+                                        "items":5
+                                    },
+                                    
+                                    "900": {
+                                        "items":6
+                                    },
+                                    "1600": {
+                                        "items":7,
+                                        "nav": true
+                                    }
+                                }
+                            }'>
+						<a href="#" class="brand"> <img th:src="@{/shop/assets/images/logo/g9.jpg}" alt="Brand Name">
+						</a> <a href="#" class="brand"> <img th:src="@{/shop/assets/images/logo/ck.jpg}"
+								alt="Brand Name">
+						</a> <a href="#" class="brand"> <img th:src="@{/shop/assets/images/logo/dior.jpg}"
+								alt="Brand Name">
+						</a> <a href="#" class="brand"> <img th:src="@{/shop/assets/images/logo/biore.jpg}"
+								alt="Brand Name">
+						</a> <a href="#" class="brand"> <img th:src="@{/shop/assets/images/logo/chloe.jpg}"
+								alt="Brand Name">
+						</a> <a href="#" class="brand"> <img th:src="@{/shop/assets/images/logo/Cauda.jpg}"
+								alt="Brand Name">
+						</a>
+					</div>
+					<!-- End .owl-carousel -->
+
+					<div class="mb-5"></div>
+					<!-- End .mb-5 -->
+
+					<div class="row cat-banner-row electronics">
+						<div class="col-xl-3 col-xxl-4">
+							<div class="cat-banner row no-gutters">
+								<div class="cat-banner-list col-sm-6 d-xl-none d-xxl-flex"
+									style="background-image: url(/shop/assets/images/logo/cosmetic1.jpg);">
+									<div class="banner-list-content">
+										<h2>
+											<a th:href="@{/beauty/shop?category_id=12}">Mỹ phẩm</a>
+										</h2>
+									</div>
+									<!-- End .banner-list-content -->
+								</div>
+								<!-- End .col-sm-6 -->
+
+
+								<!-- End .col-sm-6 -->
+							</div>
+							<!-- End .cat-banner -->
+						</div>
+						<!-- End .col-xl-3 -->
+
+						<div class="col-xl-10 col-xxl-7">
+							<div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow"
+								data-toggle="owl" data-owl-options='{
+                                        "nav": true, 
+                                        "dots": false,
+                                        "margin": 20,
+                                        "loop": false,
+                                        "responsive": {
+                                            "0": {
+                                                "items":2
+                                            },
+                                            "480": {
+                                                "items":2
+                                            },
+                                            "768": {
+                                                "items":3
+                                            },
+                                            "992": {
+                                                "items":4
+                                            },
+                                            "1200": {
+                                                "items":3
+                                            },
+                                            "1600": {
+                                                "items":4
+                                            }
+                                        }
+                                    }'>
+								<div class="product text-center" th:each="item, i : ${listLapTop}">
+									<figure class="product-media">
+										<span
+											th:if="${item.startDayDiscount != null and item.endDayDiscount != null and item.discount > 0}">
+											<span class="product-label label-sale"
+												th:if="${item.startDayDiscount.before(#dates.createNow()) and item.endDayDiscount.after(#dates.createNow())}"
+												th:text="${item.discount + ' % giảm'}"></span> <span
+												class="product-label"
+												th:if="${item.startDayDiscount.after(#dates.createNow())}">Sắp
+												giảm giá</span>
+										</span>
+										<a th:href="@{/beauty/product-detail(id=${item.id})}"> <img
+												th:src="${item.banner} == null ? '/shop/assets/images/no-image.jpg' : '/uploads/' + ${item.banner}"
+												alt="Product image" class="product-image">
+										</a>
+
+										<div class="product-action-vertical">
+											<a th:data-id="${item.id}"
+												th:onclick="addLikeShop(this.getAttribute('data-id'))"
+												class="btn-product-icon btn-wishlist btn-expandable"><span>Yêu
+													thích</span></a>
+											<a href="#quickView-modal" data-toggle="modal" th:data-id="${item.id}"
+												th:onclick="quickView(this.getAttribute('data-id'))"
+												class="btn-product-icon btn-quickview"><span>Xem</span></a>
+										</div>
+										<!-- End .product-action-vertical -->
+
+										<div class="product-action">
+											<a href="#quickView-modal" data-toggle="modal" th:data-id="${item.id}"
+												th:onclick="quickView(this.getAttribute('data-id'))"
+												class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
+										</div>
+										<!-- End .product-action -->
+									</figure>
+									<!-- End .product-media -->
+
+									<div class="product-body">
+										<div class="product-cat">
+											<a href="#" th:text="${item.category.name}">Women</a>
+										</div>
+										<!-- End .product-cat -->
+										<h3 class="product-title">
+											<a th:href="@{/beauty/product-detail(id=${item.id})}"
+												th:text="${item.name}">Tên sản phẩm</a>
+										</h3>
+
+										<!-- index -->
+										<h2 class="product-title">
+											<a th:href="@{/beauty/product-detail(id=${item.id})}"
+												th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 3, 'POINT')} + ' VND'"
+												style="color: #fcb941"></a>
+										</h2>
+										<!-- End .product-title -->
+										<!-- <div class="product-price"
+											th:if="${item.startDayDiscount == null or item.endDayDiscount == null or item.discount <= 0}"
+											th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">
+											150.000
+											VND</div>
+
+										<div class="product-price"
+											th:if="${item.startDayDiscount != null and item.endDayDiscount != null and item.discount > 0}">
+											<span th:if="${item.startDayDiscount.after(#dates.createNow())}"
+												th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+												VND</span> <span
+												th:if="${item.startDayDiscount.before(#dates.createNow()) and item.endDayDiscount.after(#dates.createNow())}">
+												<span class="new-price"
+													th:text="${#numbers.formatDecimal(item.price - (item.price * item.discount * 0.01), 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+													VND</span> <span class="old-price"> <del
+														th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">
+														150.000 VND</del></span>
+
+											</span>
+										</div> -->
+										<!-- End .product-price -->
+									</div>
+									<!-- End .product-body -->
+								</div>
+								<!-- End .product -->
+							</div>
+							<!-- End .owl-carousel -->
+						</div>
+						<!-- End .col-xl-9 -->
+					</div>
+					<!-- End .row cat-banner-row -->
+
+					<div class="mb-3"></div>
+					<!-- End .mb-3 -->
+
+					<div class="row cat-banner-row furniture">
+						<div class="col-xl-3 col-xxl-4">
+							<div class="cat-banner row no-gutters">
+								<div class="cat-banner-list col-sm-6 d-xl-none d-xxl-flex"
+									style="background-image: url(assets/images/demos/demo-14/banners/banner-bg-2.jpg);">
+									<div class="banner-list-content">
+										<h2>
+											<a th:href="@{/beauty/shop?category_id=8}">Nhà bếp </a>
+										</h2>
+									</div>
+									<!-- End .banner-list-content -->
+								</div>
+								<!-- End .col-sm-6 -->
+
+								<div class="col-sm-6 col-xl-12 col-xxl-6">
+
+									<!-- End .banner -->
+								</div>
+								<!-- End .col-sm-6 -->
+							</div>
+							<!-- End .cat-banner -->
+						</div>
+						<!-- End .col-xl-3 -->
+
+						<div class="col-xl-10 col-xxl-7">
+							<div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow"
+								data-toggle="owl" data-owl-options='{
+                                        "nav": true, 
+                                        "dots": false,
+                                        "margin": 20,
+                                        "loop": false,
+                                        "responsive": {
+                                            "0": {
+                                                "items":2
+                                            },
+                                            "480": {
+                                                "items":2
+                                            },
+                                            "768": {
+                                                "items":3
+                                            },
+                                            "992": {
+                                                "items":4
+                                            },
+                                            "1200": {
+                                                "items":3
+                                            },
+                                            "1600": {
+                                                "items":4
+                                            }
+                                        }
+                                    }'>
+								<div class="product text-center" th:each="item, i : ${listCook}">
+									<figure class="product-media">
+										<span
+											th:if="${item.startDayDiscount != null and item.endDayDiscount != null and item.discount > 0}">
+											<span class="product-label label-sale"
+												th:if="${item.startDayDiscount.before(#dates.createNow()) and item.endDayDiscount.after(#dates.createNow())}"
+												th:text="${item.discount + ' % giảm'}"></span> <span
+												class="product-label"
+												th:if="${item.startDayDiscount.after(#dates.createNow())}">Sắp
+												giảm giá</span>
+										</span>
+										<a th:href="@{/beauty/product-detail(id=${item.id})}"> <img
+												th:src="${item.banner} == null ? '/shop/assets/images/no-image.jpg' : '/uploads/' + ${item.banner}"
+												alt="Product image" class="product-image">
+										</a>
+
+										<div class="product-action-vertical">
+											<a th:data-id="${item.id}"
+												th:onclick="addLikeShop(this.getAttribute('data-id'))"
+												class="btn-product-icon btn-wishlist btn-expandable"><span>Yêu
+													thích</span></a> <a href="#quickView-modal" data-toggle="modal"
+												th:data-id="${item.id}"
+												th:onclick="quickView(this.getAttribute('data-id'))"
+												class="btn-product-icon btn-quickview"><span>Xem</span></a>
+										</div>
+										<!-- End .product-action-vertical -->
+
+										<div class="product-action">
+											<a href="#quickView-modal" data-toggle="modal" th:data-id="${item.id}"
+												th:onclick="quickView(this.getAttribute('data-id'))"
+												class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
+										</div>
+										<!-- End .product-action -->
+									</figure>
+									<!-- End .product-media -->
+
+									<div class="product-body">
+										<div class="product-cat">
+											<a href="#" th:text="${item.category.name}">Women</a>
+										</div>
+										<!-- End .product-cat -->
+										<h3 class="product-title">
+											<a th:href="@{/beauty/product-detail(id=${item.id})}"
+												th:text="${item.name}">Tên sản phẩm</a>
+										</h3>
+										<!-- index -->
+										<h2 class="product-title">
+											<a th:href="@{/beauty/product-detail(id=${item.id})}"
+												th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 3, 'POINT')} + ' VND'"
+												style="color: #fcb941"></a>
+										</h2>
+										<!-- End .product-title -->
+										<!-- <div class="product-price"
+											th:if="${item.startDayDiscount == null or item.endDayDiscount == null or item.discount <= 0}"
+											th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">
+											150.000
+											VND</div>
+
+										<div class="product-price"
+											th:if="${item.startDayDiscount != null and item.endDayDiscount != null and item.discount > 0}">
+											<span th:if="${item.startDayDiscount.after(#dates.createNow())}"
+												th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+												VND</span> <span
+												th:if="${item.startDayDiscount.before(#dates.createNow()) and item.endDayDiscount.after(#dates.createNow())}">
+												<span class="new-price"
+													th:text="${#numbers.formatDecimal(item.price - (item.price * item.discount * 0.01), 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+													VND</span> <span class="old-price"> <del
+														th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">
+														150.000 VND</del></span>
+
+											</span>
+										</div> -->
+										<!-- End .product-price -->
+									</div>
+									<!-- End .product-body -->
+								</div>
+								<!-- End .product -->
+							</div>
+							<!-- End .owl-carousel -->
+						</div>
+						<!-- End .col-xl-9 -->
+					</div>
+					<!-- End .row cat-banner-row -->
+
+					<div class="mb-3"></div>
+					<!-- End .mb-3 -->
+
+					<div class="mb-3"></div>
+					<!-- End .mb-3 -->
+
+					<div class="icon-boxes-container">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-sm-6 col-lg-3">
+									<div class="icon-box icon-box-side">
+										<span class="icon-box-icon text-dark"> <i class="icon-rocket"></i>
+										</span>
+										<div class="icon-box-content">
+											<h3 class="icon-box-title">Miễn phí giao hàng</h3>
+											<!-- End .icon-box-title -->
+											<p>Cho hoá đơn trên 100.000 VND</p>
+										</div>
+										<!-- End .icon-box-content -->
+									</div>
+									<!-- End .icon-box -->
+								</div>
+								<!-- End .col-sm-6 col-lg-3 -->
+
+								<div class="col-sm-6 col-lg-3">
+									<div class="icon-box icon-box-side">
+										<span class="icon-box-icon text-dark"> <i class="icon-rotate-left"></i>
+										</span>
+
+										<div class="icon-box-content">
+											<h3 class="icon-box-title">Miễn phí đổi trả</h3>
+											<!-- End .icon-box-title -->
+											<p>Trong vòng 30 ngày</p>
+										</div>
+										<!-- End .icon-box-content -->
+									</div>
+									<!-- End .icon-box -->
+								</div>
+								<!-- End .col-sm-6 col-lg-3 -->
+
+								<div class="col-sm-6 col-lg-3">
+									<div class="icon-box icon-box-side">
+										<span class="icon-box-icon text-dark"> <i class="icon-info-circle"></i>
+										</span>
+
+										<div class="icon-box-content">
+											<h3 class="icon-box-title">Giảm 20% cho sản phẩm</h3>
+											<!-- End .icon-box-title -->
+											<p>Khi bạn đăng nhập</p>
+										</div>
+										<!-- End .icon-box-content -->
+									</div>
+									<!-- End .icon-box -->
+								</div>
+								<!-- End .col-sm-6 col-lg-3 -->
+
+								<div class="col-sm-6 col-lg-3">
+									<div class="icon-box icon-box-side">
+										<span class="icon-box-icon text-dark"> <i class="icon-life-ring"></i>
+										</span>
+
+										<div class="icon-box-content">
+											<h3 class="icon-box-title">Hỗ trợ</h3>
+											<!-- End .icon-box-title -->
+											<p>Dịch vụ 24/7</p>
+										</div>
+										<!-- End .icon-box-content -->
+									</div>
+									<!-- End .icon-box -->
+								</div>
+								<!-- End .col-sm-6 col-lg-3 -->
+							</div>
+							<!-- End .row -->
+						</div>
+						<!-- End .container-fluid -->
+					</div>
+					<!-- End .icon-boxes-container -->
+
+					<div class="mb-5"></div>
+					<!-- End .mb-5 -->
+				</div>
+				<!-- End .col-lg-9 col-xxl-10 -->
+
+				<aside class="col-xl-3 col-xxl-2 order-xl-first">
+					<div class="sidebar sidebar-home">
+						<div class="row">
+							<div class="col-sm-6 col-xl-12">
+								<div class="widget widget-banner">
+									<div class="banner banner-overlay">
+										<a href="#"> <img th:src="@{/shop/assets/images/logo/cosmetic1.jpg}"
+												alt="Banner img desc">
+										</a>
+
+										<div class="banner-content banner-content-top banner-content-right text-right">
+											<h3 class="banner-title text-white">
+												<a href="#">Thoải mái tối đa <span>Serum -20%
+														Giảm</span></a>
+											</h3>
+											<!-- End .banner-title -->
+											<a th:href="@{/beauty/shop}" class="banner-link">Cửa hàng
+												<i class="icon-long-arrow-right"></i>
+											</a>
+										</div>
+										<!-- End .banner-content -->
+									</div>
+									<!-- End .banner banner-overlay -->
+								</div>
+								<!-- End .widget widget-banner -->
+							</div>
+							<!-- End .col-sm-6 col-xl-12 -->
+
+							<div class="col-sm-6 col-xl-12">
+								<div class="widget widget-banner">
+									<div class="banner banner-overlay">
+										<a href="#"> <img th:src="@{/shop/assets/images/logo/cosmetic2.jpg}"
+												alt="Banner img desc">
+										</a>
+
+										<div class="banner-content banner-content-top">
+											<h3 class="banner-title text-white">
+												<a href="#">Trắng da nâng tone <br> <span>Sử
+														dụng</span> Collection <br> <span>Giảm 20%</span></a>
+											</h3>
+											<!-- End .banner-title -->
+											<a th:href="@{/beauty/shop}" class="banner-link">Cửa hàng
+												<i class="icon-long-arrow-right"></i>
+											</a>
+										</div>
+										<!-- End .banner-content -->
+									</div>
+									<!-- End .banner banner-overlay -->
+								</div>
+								<!-- End .widget widget-banner -->
+							</div>
+							<!-- End .col-sm-6 col-lg-12 -->
+						</div>
+						<!-- End .row -->
+					</div>
+					<!-- End .sidebar sidebar-home -->
+				</aside>
+				<!-- End .col-lg-3 col-xxl-2 -->
+			</div>
+			<!-- End .row -->
+		</div>
+		<!-- End .container-fluid -->
+	</div>
+</body>
+
+</html>
