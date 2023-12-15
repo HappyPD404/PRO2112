@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{shop/layout.html}">
+
+<head>
+<title>Thông tin tài khoản</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="page-header text-center"
+			style="background-image: url('../shop/assets/images/page-header-bg.jpg')">
+			<div class="container">
+				<h1 class="page-title">
+					Tài khoản<span>Cửa hàng</span>
+				</h1>
+			</div>
+			<!-- End .container -->
+		</div>
+		<!-- End .page-header -->
+		<nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/beauty/home}">Trang
+							chủ</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/beauty/shop}">Cửa
+							hàng</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Tài
+						khoản của bạn</li>
+				</ol>
+			</div>
+			<!-- End .container -->
+		</nav>
+		<!-- End .breadcrumb-nav -->
+
+		<div class="page-content">
+			<div class="dashboard">
+				<div class="container">
+					<div class="row">
+						<aside class="col-md-4 col-lg-3">
+							<ul class="nav nav-dashboard flex-column mb-3 mb-md-0"
+								role="tablist">
+								<li class="nav-item"><a class="nav-link active"
+									id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard"
+									role="tab" aria-controls="tab-dashboard" aria-selected="true">Trang
+										chính</a></li>
+								<li class="nav-item"><a class="nav-link"
+									id="tab-orders-link" data-toggle="tab" href="#tab-orders"
+									role="tab" aria-controls="tab-orders" aria-selected="false">Đặt
+										hàng</a></li>
+								<li class="nav-item" sec:authorize="isAuthenticated()"><a
+									class="nav-link" id="tab-address-link" data-toggle="tab"
+									href="#tab-address" role="tab" aria-controls="tab-address"
+									aria-selected="false">Địa chỉ đặt hàng</a></li>
+								<li class="nav-item" sec:authorize="isAuthenticated()"><a
+									class="nav-link" id="tab-account-link" data-toggle="tab"
+									href="#tab-account" role="tab" aria-controls="tab-account"
+									aria-selected="false">Chi tiết tài khoản</a></li>
+								<li class="nav-item" sec:authorize="isAuthenticated()"><a
+									class="nav-link" th:onclick="logout()">Đăng xuất</a></li>
+							</ul>
+						</aside>
+						<!-- End .col-lg-3 -->
+
+						<div class="col-md-8 col-lg-9">
+							<div class="tab-content">
+								<div class="tab-pane fade show active" id="tab-dashboard"
+									role="tabpanel" aria-labelledby="tab-dashboard-link">
+									<p>
+										Chào <span class="font-weight-normal text-dark">bạn</span> <br>
+										Đây là trang chính của bảng điều kiển, ở đây bạn có thể tuỳ
+										chỉnh thông tin tài khoản nếu bạn đã đăng nhập, nếu bạn chưa
+										có tài khoản hãy tạo ngay để trải nghiệm trang web tốt hơn.
+									</p>
+								</div>
+								<!-- .End .tab-pane -->
+
+								<div class="tab-pane fade" id="tab-orders" role="tabpanel"
+									aria-labelledby="tab-orders-link">
+									<p>Bạn chưa có đơn hàng nào.</p>
+									<a th:href="@{/beauty/shop}" class="btn btn-outline-primary-2"><span>Cửa
+											hàng</span><i class="icon-long-arrow-right"></i></a>
+								</div>
+								<!-- .End .tab-pane -->
+
+								<div sec:authorize="isAuthenticated()" class="tab-pane fade"
+									id="tab-address" role="tabpanel"
+									aria-labelledby="tab-address-link">
+									<p>Theo mặc định, các địa chỉ sau sẽ được sử dụng trên
+										trang thanh toán.</p>
+
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="card card-dashboard">
+												<div class="card-body">
+													<h3 class="card-title">Địa chỉ đặt hàng</h3>
+													<!-- End .card-title -->
+
+													<!-- Hiễn thị -->
+													<p th:if="${orderAddress == null}">Bạn chưa có địa chỉ
+														đặt hàng</p>
+
+													<div th:if="${orderAddress != null}">
+														<p th:text="${orderAddress.firstName}"></p>
+														<p th:text="${orderAddress.lastName}"></p>
+														<p th:text="${orderAddress.address}"></p>
+														<p th:text="${orderAddress.phone}"></p>
+														<p th:text="${orderAddress.email}"></p>
+													</div>
+												</div>
+
+												<!-- End .card-body -->
+											</div>
+											<!-- End .card-dashboard -->
+										</div>
+										<!-- End .col-lg-6 -->
+
+										<div class="col-lg-6">
+											<div class="card card-dashboard">
+												<div class="card-body">
+													<h3 class="card-title">Giao hàng</h3>
+													<!-- End .card-title -->
+													<form
+														th:action="@{/beauty/account/info-account/order-address}"
+														method="POST" th:object="${orderAddressDto}">
+
+														<input type="hidden" th:field="*{id}"> <label>Họ
+															*</label> <input type="text" class="form-control" required
+															th:field="*{firstName}"> <label>Tên *</label> <input
+															type="text" class="form-control" required
+															th:field="*{lastName}"> <label>Địa chỉ *</label>
+														<input type="text" class="form-control" required
+															th:field="*{address}"> <label>Số điện
+															thoại *</label> <input type="text" class="form-control" required
+															th:field="*{phone}"> <label>Email *</label> <input
+															type="email" class="form-control" required
+															th:field="*{email}" readonly>
+
+														<button type="submit" class="btn btn-primary btn-round">
+															<span>Cập nhật</span> <i class="icon-long-arrow-right"></i>
+														</button>
+													</form>
+												</div>
+												<!-- End .card-body -->
+											</div>
+											<!-- End .card-dashboard -->
+										</div>
+										<!-- End .col-lg-6 -->
+									</div>
+									<!-- End .row -->
+								</div>
+								<!-- .End .tab-pane -->
+
+								<div sec:authorize="isAuthenticated()" class="tab-pane fade"
+									id="tab-account" role="tabpanel"
+									aria-labelledby="tab-account-link">
+									<form th:action="@{/beauty/account/info-account/change-info}"
+										method="POST" th:object="${userDto}"
+										enctype="multipart/form-data">
+										<div class="card card-dashboard">
+											<div class="card-body">
+												<p th:text="${userDto.username}"></p>
+												<p th:text="${userDto.email}"></p>
+												<p
+													th:text="${userDto.login == true ? 'Cho phép' : 'Hạn chế'}"></p>
+											</div>
+										</div>
+										<input type="hidden" th:field="*{id}"> <input
+											type="hidden" th:field="*{username}"> <input
+											type="hidden" th:field="*{email}"> <input
+											type="hidden" th:field="*{login}"> <input
+											type="hidden" th:field="*{role}">
+										<div class="row">
+											<div class="col-sm-6">
+												<label>Họ *</label> <input type="text" class="form-control"
+													required th:field="*{firstName}"> <small
+													class="form-text text-danger"
+													th:if="${#fields.hasErrors('firstName')}"
+													th:errors="*{firstName}">Italic
+													text.</small>
+											</div>
+											<!-- End .col-sm-6 -->
+
+											<div class="col-sm-6">
+												<label>Tên *</label> <input type="text" class="form-control"
+													required th:field="*{lastName}"> <small
+													class="form-text text-danger"
+													th:if="${#fields.hasErrors('lastName')}"
+													th:errors="*{lastName}">Italic text.</small>
+											</div>
+											<!-- End .col-sm-6 -->
+										</div>
+										<!-- End .row -->
+
+										<div class="row">
+											<div class="col-sm-12">
+												<label>Địa chỉ *</label> <input type="text"
+													class="form-control" required th:field="*{address}">
+												<small class="form-text text-danger"
+													th:if="${#fields.hasErrors('address')}"
+													th:errors="*{address}">Italic text.</small>
+											</div>
+										</div>
+
+										<label>Ngày sinh</label> <input type="date"
+											class="form-control" required th:field="*{birthDay}">
+
+										<div class="row">
+											<label>Giới tính</label>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gender"
+													id="male" th:field="*{gender}" th:value="true"
+													th:checked="${gender} == true ? true : false"> <label
+													class="form-check-label" for="male"> Nam </label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gender"
+													id="female" th:field="*{gender}" th:value="false"
+													th:checked="${gender} == false ? true : false"> <label
+													class="form-check-label" for="female"> Nữ </label>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-6">
+												<label>Hình ảnh</label> <input type="file"
+													class="form-control" id="file" name="file"
+													onchange="readImageUser(this);">
+											</div>
+											<div class="col-sm-6">
+												<div class="product text-center w-50">
+													<figure class="product-media">
+														<img th:src="@{/shop/assets/images/no-image.jpg}"
+															alt="Product image" class="product-image"
+															id="change__info__avatar">
+													</figure>
+												</div>
+											</div>
+										</div>
+
+										<button type="submit" class="btn btn-outline-primary-2">
+											<span>CẬP NHẬT</span> <i class="icon-long-arrow-right"></i>
+										</button>
+									</form>
+								</div>
+								<!-- .End .tab-pane -->
+							</div>
+						</div>
+						<!-- End .col-lg-9 -->
+					</div>
+					<!-- End .row -->
+				</div>
+				<!-- End .container -->
+			</div>
+			<!-- End .dashboard -->
+		</div>
+		<!-- End .page-content -->
+	</div>
+</body>
+
+</html>
