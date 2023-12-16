@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{shop/layout.html}">
+
+<head>
+  <title>Liên hệ </title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"> 
+  <style>
+    .feedback-form {
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+    }
+
+    .feedback-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .feedback-form input[type="text"],
+    .feedback-form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    .feedback-form button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    */ .third-nav {
+      background-color: #f8f8f8;
+      padding: 15px 0;
+    }
+
+    .breadcrumb.txt {
+      color: #333;
+    }
+
+    .contact-result {
+      margin-top: 15px;
+    }
+
+    .block_bussiness {
+      margin-top: 30px;
+    }
+
+    .bussiness h1 {
+      color: #333;
+    }
+
+    .bussiness a {
+      color: #333;
+    }
+
+    .bussiness a:hover {
+      color: #ff6600;
+    }
+
+    .bussiness .mb-5 {
+      margin-bottom: 15px;
+    }
+
+    /* Bo góc */
+    .col-sm-6 {
+      border-radius: 5px;
+    }
+
+    /* Cho web chạy */
+
+    .col-sm-6-wrapper {
+      border-radius: 5px;
+      overflow: hidden;
+      animation: animateIn 2s ease-in-out;
+    }
+
+
+    @keyframes animateIn {
+      0% {
+        transform: translateX(-20px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .mb-5 {
+      /* border-radius: 100px solid aqua; */
+      box-shadow: 5px #ff6600;
+      transition: 5s;
+
+    }
+
+    .hi-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      animation: animateIn 1s ease-in-out;
+    }
+
+
+    @keyframes animateIn {
+      0% {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    */ .third-nav {
+      background-color: #f8f8f8;
+      padding: 15px, 0px;
+
+    }
+
+    .breadcrumb.txt {
+      color: #333;
+    }
+
+    /* .running-text {
+       position: relative;
+     } */
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+      color: #fff;
+      background-color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div layout:fragment="content">
+
+    <div class="row">
+      <div class="col-sm-6 offset-sm-4">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <div class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button"
+              role="tab" aria-controls="pills-home" aria-selected="true">Cơ Sở 1</div>
+          </li>
+          <li class="nav-item" role="presentation">
+            <div class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button"
+              role="tab" aria-controls="pills-profile" aria-selected="false">Cơ sở 2</div>
+          </li>
+          <li class="nav-item" role="presentation">
+            <div class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button"
+              role="tab" aria-controls="pills-contact" aria-selected="false">Cơ sở 3</div>
+          </li>
+          <li class="nav-item" role="presentation">
+            <div class="nav-link" id="pills-about-tab" data-toggle="pill" data-target="#pills-about" type="button"
+              role="tab" aria-controls="pills-about" aria-selected="false">Cơ sở 4</div>
+          </li>
+          <li class="nav-item" role="presentation">
+            <div class="nav-link" id="pills-cart-tab" data-toggle="pill" data-target="#pills-cart" type="button"
+              role="tab" aria-controls="pills-cart" aria-selected="false">Cơ sở 5</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="container">
+          <div class="row"
+            style="background-color: aliceblue;border: 5px solid salmon; margin: 30px; text-align: justify;">
+            <div class="hi-wrapper">
+              <div class="col-sm-6" style="margin-top: 10px;">
+                <figure class="wp-block-image size-medium"><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.81209160302!2d108.1739861746843!3d16.075237939277905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218e4ec73be65%3A0x17659e27c7101d6!2zMjQgUGjhu6VjIMSQw6FuLCBUaGFuaCBLaMOqIFTDonksIFRoYW5oIEtow6osIMSQw6AgTuG6tW5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1698204703282!5m2!1svi!2s"
+                    width="450px" height="380px" style="border: 5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></figure>
+              </div>
+            </div>
+            <div class="col-sm-6  animate_animated animate_fadeInRight text-center" style="margin-top: 50px;">
+              <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Cơ Sở 1</h2>
+              <img th:src="@{/shop/assets/images/logo/logo.png}" alt="" width="300px" height="115px"
+                style="border-radius: 100px;text-align: center; margin-left:100px;">
+              <p class="has-neve-text-color-color has-text-color">Số điện thoại: 0868031764</p>
+              <p class="has-neve-text-color-color has-text-color">Địa chỉ: 24 Phục Đán, Quận Thanh Khê, TP Đà Nẵng.</p>
+              <p class="has-neve-text-color-color has-text-color">Email: beautycare634@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="container">
+          <div class="row"
+            style="background-color: aliceblue;border: 5px solid salmon; margin: 30px; text-align: justify;">
+            <div class="hi-wrapper">
+              <div class="col-sm-6" style="margin-top: 10px;">
+                <figure class="wp-block-image size-medium"><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.157836554633!2d108.21532197468399!3d16.05729723975818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219c96d27080d%3A0x4afe15e6d88c9637!2zMTgwIEh14buzbmggVGjDumMgS2jDoW5nLCBCw6xuaCBIacOqbiwgSOG6o2kgQ2jDonUsIMSQw6AgTuG6tW5nIDU1MDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1698204334603!5m2!1svi!2s"
+                    width="450px" height="380px" style="border:5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></figure>
+              </div>
+            </div>
+            <div class="col-sm-6  animate_animated animate_fadeInRight text-center" style="margin-top: 50px;">
+              <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Cơ Sở 2</h2>
+              <img th:src="@{/shop/assets/images/logo/logo.png}" alt="" width="300px" height="115px"
+                style="border-radius: 100px;text-align: center;margin-left:100px;">
+              <p class="has-neve-text-color-color has-text-color">Số điện thoại: 0773377124</p>
+              <p class="has-neve-text-color-color has-text-color">Địa chỉ: 180 Huỳnh Thúc Kháng, Quận Hải Châu, TP Đà
+                Nẵng.</p>
+              <p class="has-neve-text-color-color has-text-color">Email: beautycare634@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="container">
+          <div class="row"
+            style="background-color: aliceblue;border: 5px solid salmon; margin: 30px; text-align: justify;">
+            <div class="hi-wrapper">
+              <div class="col-sm-6" style="margin-top: 10px;">
+                <figure class="wp-block-image size-medium"><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.0368983512003!2d108.20588547468402!3d16.063574939590104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b49f2ac639%3A0xbb96b34d7b6c9cf7!2zNzQgUGhhbiBUaGFuaCwgVGjhuqFjIEdpw6FuLCBRLiBUaGFuaCBLaMOqLCDEkMOgIE7hurVuZyA1NTAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1698204599420!5m2!1svi!2s"
+                    width="450px" height="380px" style="border:5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></figure>
+              </div>
+            </div>
+            <div class="col-sm-6 animate_animated animate_fadeInRight text-center" style="margin-top: 50px;">
+              <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Cơ Sở 3</h2>
+              <img th:src="@{/shop/assets/images/logo/logo.png}" alt="" width="300px" height="115px"
+                style="border-radius: 100px;text-align: center;margin-left:100px;"><br>
+              <p class="has-neve-text-color-color has-text-color">Số điện thoại: 0377072976</p>
+              <p class="has-neve-text-color-color has-text-color">Địa chỉ: 74 Phan Thanh, Quận Thanh Khê, TP Đà Nẵng.
+              </p>
+              <p class="has-neve-text-color-color has-text-color">Email: beautycare634@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab">
+        <div class="container">
+          <div class="row"
+            style="background-color: aliceblue;border: 5px solid salmon; margin: 30px; text-align: justify;">
+            <div class="hi-wrapper">
+              <div class="col-sm-6" style="margin-top: 10px;">
+                <figure class="wp-block-image size-medium"><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.1390583870707!2d108.164999674684!3d16.058272139731976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b80d180289%3A0x7779368a6eca5475!2zNjIgSMOyYSBN4bu5IDksIEhvw6AgTWluaCwgTGnDqm4gQ2hp4buDdSwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1698216289917!5m2!1svi!2s"
+                    width="450px" height="380px" style="border:5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></figure>
+              </div>
+            </div>
+            <div class="col-sm-6 animate_animated animate_fadeInRight text-center" style="margin-top: 50px;">
+              <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Cơ Sở 3</h2>
+              <img th:src="@{/shop/assets/images/logo/logo.png}" alt="" width="300px" height="115px"
+                style="border-radius: 100px;text-align: center;margin-left:100px;"><br>
+              <p class="has-neve-text-color-color has-text-color">Số điện thoại: 0395724277</p>
+              <p class="has-neve-text-color-color has-text-color">Địa chỉ: 62 Hòa Mỹ 9, Quận Liên Chiểu, TP Đà Nẵng.</p>
+              <p class="has-neve-text-color-color has-text-color">Email: beautycare634@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-cart" role="tabpanel" aria-labelledby="pills-cart-tab">
+        <div class="container">
+          <div class="row"
+            style="background-color: aliceblue;border: 5px solid salmon; margin: 30px; text-align: justify;">
+            <div class="hi-wrapper">
+              <div class="col-sm-6" style="margin-top: 10px;">
+                <figure class="wp-block-image size-medium"><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.0632371589445!2d108.17366207468407!3d16.06220793962672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142191b62b7ef67%3A0x15ca82d68dc6601e!2zNDMgTmd1eeG7hW4gTmjGsCBI4bqhbmgsIEhvw6AgTWluaCwgTGnDqm4gQ2hp4buDdSwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1698216341471!5m2!1svi!2s"
+                    width="450px" height="380px" style="border:5px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></figure>
+              </div>
+            </div>
+            <div class="col-sm-6 animate_animated animate_fadeInRight text-center" style="margin-top: 50px;">
+              <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Cơ Sở 3</h2>
+              <img th:src="@{/shop/assets/images/logo/logo.png}" alt="" width="300px" height="115px"
+                style="border-radius: 100px;text-align: center;margin-left:100px;"><br>
+              <p class="has-neve-text-color-color has-text-color">Số điện thoại: 0366298177</p>
+              <p class="has-neve-text-color-color has-text-color">Địa chỉ: 43/27 Nguyễn Như Hạnh, Quận Liên Chiểu, TP Đà
+                Nẵng.</p>
+              <p class="has-neve-text-color-color has-text-color">Email: beautycare634@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="container">
+      <div class="row" style="background-color: aliceblue;border: 5px solid salmon; margin: 30px; text-align: justify;">
+        <div class="hi-wrapper">
+          <div class="col-sm-6 animate_animated animate_fadeInRight">
+            <figure class="wp-block-image size-large"><img decoding="async" fetchpriority="high"
+                th:src="@{/shop/assets/images/logo/cosmetic1.jpg}" alt="" width="840px" height="00px"
+                style="margin-top:20px;" class="wp-image-36" data-opt-lazy-loaded="false"></figure>
+          </div>
+        </div>
+        <div class="col-sm-6" style="margin-left: -380px;margin-top: 20px;">
+          <div class="feedback-form">
+            <h2 class="text-center">Gửi phản hồi</h2>
+            <form class="panel-body loadContactForm" id="feedbackform">
+              <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input name="userName" type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input name="email" type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="message">Nội dung</label>
+                <textarea name="message" class="form-control" id="message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-danger">Gửi góp ý</button>
+            </form>
+          </div>
+          <div class="contact-result alert"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>

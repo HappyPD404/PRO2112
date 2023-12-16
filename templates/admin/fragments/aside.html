@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+</head>
+
+<body>
+	<div th:fragment="aside">
+		<aside id="sidebar" class="sidebar">
+
+			<ul class="sidebar-nav" id="sidebar-nav">
+
+				<li class="nav-item"><a class="nav-link " th:href="@{/home}"> <i class="bi bi-grid"></i> <span>Trang
+							chủ</span>
+					</a></li>
+				<!-- End Dashboard Nav -->
+
+				<li class="nav-item"><a class="nav-link collapsed" th:href="@{/users}">
+						<i class="bi bi-people-fill"></i> <span>Người dùng</span>
+					</a></li>
+
+				<li class="nav-item"><a class="nav-link collapsed" th:href="@{/categories}">
+						<i class="bi bi-tag-fill"></i> <span>Danh mục</span>
+					</a></li>
+
+				<li class="nav-item"><a class="nav-link collapsed" th:href="@{/products}">
+						<i class="bi bi-box"></i> <span>Sản phẩm</span>
+					</a></li>
+
+				<li class="nav-item"><a class="nav-link collapsed" th:href="@{/orders}">
+						<i class="bi bi-paypal"></i> <span>Hoá đơn</span>
+					</a></li>
+
+				<li class="nav-item"><a class="nav-link collapsed" data-bs-target="#charts-nav"
+						data-bs-toggle="collapse" href="#">
+						<i class="bi bi-bar-chart"></i><span>Thống kê</span><i class="bi bi-chevron-down ms-auto"></i>
+					</a>
+					<ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+						<li><a th:href="@{/statistics/revenue}"> <i class="bi bi-circle"></i><span>Doanh
+									thu</span>
+							</a></li>
+						<li><a th:href="@{/statistics/like}"> <i class="bi bi-circle"></i><span>Lượt
+									thích</span>
+							</a></li>
+						<li><a th:href="@{/statistics/view}"> <i class="bi bi-circle"></i><span>Lượt
+									truy cập</span>
+							</a></li>
+					</ul>
+				</li>
+
+			</ul>
+
+		</aside>
+	</div>
+</body>
+
+</html>

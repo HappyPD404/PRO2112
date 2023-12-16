@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+</head>
+
+<body>
+	<div th:fragment="order-view">
+		<div class="modal fade" id="orderView-modal" tabindex="-1"
+			role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered"
+				style="max-width: 1500px;" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="container quickView-container">
+							<div class="quickView-content">
+								<div class="row">
+									<div class="col-lg-6 col-md-6">
+										<table class="table table-mobile">
+											<tbody>
+												<tr>
+													<th>Mã đơn hàng</th>
+													<th id="order__view__id">1</th>
+												</tr>
+												<tr>
+													<th>Ngày đặt hàng</th>
+													<th id="order__view__creact__day">1</th>
+												</tr>
+												<tr>
+													<th>Ghi chú</th>
+													<th id="order__view__note">1</th>
+												</tr>
+												<tr>
+													<th>Thanh toán</th>
+													<th id="order__view__pay">1</th>
+												</tr>
+												<tr>
+													<th>Vận chuyển</th>
+													<th id="order__view__ship">1</th>
+												</tr>
+												<tr>
+													<th>Trạng thái</th>
+													<th id="order__view__status">1</th>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-lg-6 col-md-6">
+										<table class="table table-mobile">
+											<tbody>
+												<tr>
+													<th>Địa chỉ</th>
+													<th id="order__view__address">1</th>
+												</tr>
+												<tr>
+													<th>Email</th>
+													<th id="order__view__email">1</th>
+												</tr>
+												<tr>
+													<th>Họ</th>
+													<th id="order__view__first__name">1</th>
+												</tr>
+												<tr>
+													<th>Tên</th>
+													<th id="order__view__last__name">1</th>
+												</tr>
+												<tr>
+													<th>Số điện thoại</th>
+													<th id="order__view__phone">1</th>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<table class="table table-wishlist table-mobile">
+										<thead>
+											<tr>
+												<th>Sản phẩm</th>
+												<th>Giá</th>
+												<th>Số lượng</th>
+												<th>Giảm giá</th>
+												<th>Tổng tiền</th>
+											</tr>
+										</thead>
+										<tbody id="order__view__body">
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End .modal-body -->
+				</div>
+				<!-- End .modal-content -->
+			</div>
+			<!-- End .modal-dialog -->
+		</div>
+	</div>
+</body>
+
+</html>

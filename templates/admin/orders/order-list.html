@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+	<title>Hoá đơn</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Hoá đơn</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/orders}">Hoá
+							đơn</a></li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+
+					<div class="card">
+						<div class="card-body">
+							<div class="row mt-2">
+								<div class="col-sm-2 col-lg-2">
+									<form th:action="@{/orders(field=${field}, keywords=${keywords})}">
+										<label for=""> <select class="form-select" name="size" id="size"
+												onchange="this.form.submit()">
+												<option value="5" th:selected="${resultPage.size == 5}">5</option>
+												<option value="10" th:selected="${resultPage.size == 10}">10</option>
+												<option value="15" th:selected="${resultPage.size == 15}">15</option>
+												<option value="20" th:selected="${resultPage.size == 20}">20</option>
+												<option value="25" th:selected="${resultPage.size == 25}">25</option>
+											</select>
+										</label>
+									</form>
+								</div>
+								<div class="col-sm8 col-lg-8"></div>
+								<div class="col-sm-2 col-lg-2 justify-content-end">
+									<form th:action="@{/orders(field=${field}, size=${size})}">
+										<div class="input-group mb-3">
+											<input type="text" class="form-control" name="keywords" id="keywords"
+												placeholder="Tìm kiếm theo email đặt hàng" th:value="${keywords}">
+											<button class="btn btn-outline-secondary" type="submit">
+												<i class="bi bi-search"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+
+							<!-- Default Table -->
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col"><a
+												th:href="@{/orders(field=orderAddress.lastName, size=${size}, keywords=${keywords})}">Họ
+												và tên</a></th>
+										<th scope="col"><a
+												th:href="@{/orders(field=orderAddress.email, size=${size}, keywords=${keywords})}">Email</a>
+										</th>
+										<th scope="col"><a
+												th:href="@{/orders(field=orderAddress.phone, size=${size}, keywords=${keywords})}">Số
+												điện thoại</a></th>
+										<th scope="col"><a
+												th:href="@{/orders(field=pay, size=${size}, keywords=${keywords})}">Thanh
+												toán</a></th>
+										<th scope="col"><a
+												th:href="@{/orders(field=ship, size=${size}, keywords=${keywords})}">Vận
+												chuyển</a></th>
+										<th scope="col"><a
+												th:href="@{/orders(field=status, size=${size}, keywords=${keywords})}">Trạng
+												thái</a></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="item, i : ${resultPage.content}">
+										<th scope="row" th:text="${i.count}"></th>
+										<td
+											th:text="${item.orderAddress.firstName} + ' ' + ${item.orderAddress.lastName}">
+										</td>
+										<td th:text="${item.orderAddress.email}"></td>
+										<td th:text="${item.orderAddress.phone}"></td>
+										<td><span th:if="${item.pay.toString == 'UNPAID'}" class="badge bg-danger">Chưa
+												thanh toán</span> <span th:if="${item.pay.toString != 'UNPAID'}"
+												class="badge bg-success">Đã thanh toán</span></td>
+										<td>
+											<p th:if="${item.ship == null}">Miễn phí - 0 VND</p>
+											<div th:if="${item.ship != null}" th:switch="${item.ship.toString}">
+												<p th:case="'FREE'">Miễn phí - 0 VND</p>
+												<p th:case="'STANDART'">Tiêu chuẩn - 10.000 VND</p>
+												<p th:case="'EXPRESS'">Chính xác - 20.000 VND</p>
+												<p th:case="*">Miễn phí - 0 VND</p>
+											</div>
+										</td>
+										<td><span th:if="${item.status == 0}" class="badge bg-danger">Đang chờ xác
+												nhận</span>
+											<div th:if="${item.status != 0}" th:switch="${item.status.toString}">
+												<span th:case="'AWAITING_CONFIRMATION'" class="badge bg-danger">Đang chờ
+													xác nhận</span> <span th:case="'CONFIRMED'"
+													class="badge bg-info text-dark">Đã
+													xác nhận</span> <span th:case="'BEING_TRANSPORTED'"
+													class="badge bg-warning text-dark">Đang vận chuyển</span> <span
+													th:case="'HAS_RECEIVED_THE_GOODS'" class="badge bg-success">Đã
+													giao hàng</span> <span th:case="*" class="badge bg-danger">Đang
+													chờ xác nhận</span>
+											</div>
+										</td>
+										<td>
+											<div class="btn-group" role="group">
+												<button type="button" class="btn btn-info" data-bs-toggle="modal"
+													data-bs-target="#viewOrder" th:data-id="${item.id}"
+													th:onclick="viewOrder(this.getAttribute('data-id'))">
+													<i class="bi bi-eye"></i>
+												</button>
+												<button type="button" class="btn btn-warning" data-bs-toggle="modal"
+													data-bs-target="#viewEditOrder" th:data-id="${item.id}"
+													th:onclick="viewEditOrder(this.getAttribute('data-id'))">
+													<i class="bi bi-pen"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- End Default Table Example -->
+
+							<nav aria-label="Page navigation example" th:if="${resultPage.totalPages > 0}">
+								<ul class="pagination justify-content-center">
+									<li th:class="${resultPage.number + 1 == 1} ? 'page-item active' : 'page-item'">
+										<a class="page-link"
+											th:href="@{/orders(field=${field}, page=${1}, size=${resultPage.size}, keywords=${keywords})}"
+											tabindex="-1" aria-disabled="true">Previous</a>
+									</li>
+
+									<li th:each=" pageNumber : ${pageNumbers}" th:if="${resultPage.totalPages > 1}"
+										th:class="${pageNumber == resultPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a class="page-link"
+											th:href="@{/orders(field=${field}, page=${pageNumber}, size=${resultPage.size}, keywords=${keywords})}"
+											th:text="${pageNumber}">1</a>
+									</li>
+
+									<li
+										th:class="${resultPage.number + 1 == resultPage.totalPages} ? 'page-item active' : 'page-item'">
+										<a class="page-link"
+											th:href="@{/orders(field=${field}, page=${resultPage.totalPages}, size=${resultPage.size}, keywords=${keywords})}">Next</a>
+									</li>
+								</ul>
+							</nav>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+		<div class="modal fade" id="viewOrder" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-fullscreen">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Thông tin đơn hàng</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th>Mã đơn hàng</th>
+											<th id="orderViewId">1</th>
+										</tr>
+										<tr>
+											<th>Ngày đặt hàng</th>
+											<th id="orderViewCreactDay">1</th>
+										</tr>
+										<tr>
+											<th>Ghi chú</th>
+											<th id="orderViewNote">1</th>
+										</tr>
+										<tr>
+											<th>Thanh toán</th>
+											<th id="orderViewPay">1</th>
+										</tr>
+										<tr>
+											<th>Vận chuyển</th>
+											<th id="orderViewShip">1</th>
+										</tr>
+										<tr>
+											<th>Trạng thái</th>
+											<th id="orderViewStatus">1</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th>Địa chỉ</th>
+											<th id="orderViewAddress">1</th>
+										</tr>
+										<tr>
+											<th>Email</th>
+											<th id="orderViewEmail">1</th>
+										</tr>
+										<tr>
+											<th>Họ</th>
+											<th id="orderViewFirstName">1</th>
+										</tr>
+										<tr>
+											<th>Tên</th>
+											<th id="orderViewLastName">1</th>
+										</tr>
+										<tr>
+											<th>Số điện thoại</th>
+											<th id="orderViewPhone">1</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Sản phẩm</th>
+										<th>Tên Sản phẩm</th>
+										<th>Giá</th>
+										<th>Số lượng</th>
+										<th>Giảm giá</th>
+										<th>Tổng tiền</th>
+									</tr>
+								</thead>
+								<tbody id="bodyViewOrder">
+
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="viewEditOrder" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Cập nhật đơn hàng</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<input type="hidden" id="hiddenId" />
+							<div class="col m6 s12">
+								<h6>Trạng thái</h6>
+								<label>
+									<input name="status" id="status1" type="radio" value="AWAITING_CONFIRMATION"
+										checked />
+									<span class="badge bg-danger">Đang chờ xác nhận</span>
+								</label>
+								<label>
+									<input name="status" id="status2" type="radio" value="CONFIRMED" />
+									<span class="badge bg-info text-dark">Đã xác nhận</span>
+								</label>
+								<label>
+									<input name="status" id="status3" type="radio" value="BEING_TRANSPORTED" />
+									<span class="badge bg-warning text-dark">Đang vận chuyển</span>
+								</label>
+								<label>
+									<input name="status" id="status4" type="radio" value="HAS_RECEIVED_THE_GOODS" />
+									<span class="badge bg-success">Đã giao hàng</span>
+								</label>
+							</div>
+							<div class="col m6 s12">
+								<h6 class="invoice-from">Thanh toán</h6>
+								<label>
+									<input name="pay" id="pay1" type="radio" value="UNPAID" checked />
+									<span class="badge bg-danger">Chưa thanh toán</span>
+								</label>
+								<label>
+									<input name="pay" id="pay2" type="radio" value="PAID" />
+									<span class="badge bg-success">Đã thanh toán</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+						<a th:onclick="updateInvoice()" class="btn btn-primary">Cập nhật</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

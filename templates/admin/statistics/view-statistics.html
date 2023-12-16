@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Thống kê lượt xem, lượt truy cập</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Thống kê lượt xem, lượt truy cập</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Lượt truy cập,
+							lượt xem</a></li>
+					<!-- <li class="breadcrumb-item active">Dashboard</li> -->
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								Thống kê lượt truy cập theo tháng trong năm <label
+									for="yearView"> <select class="form-select"
+									id="yearView" name="yearView" onchange="handleYearView()">
+										<option th:each="item, i : ${years}" th:value="${item}"
+											th:text="${item}"></option>
+								</select>
+								</label>
+							</h5>
+
+							<!-- Area Chart -->
+							<div id="viewStatisticsYear" style="min-height: 400px;"
+								class="echart"></div>
+
+							<!-- End Area Chart -->
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Thống kê lượt xem theo danh mục</h5>
+
+							<!-- Pie Chart -->
+							<div id="viewStatisticsCategory" style="min-height: 400px;"
+								class="echart"></div>
+
+							<!-- End Pie Chart -->
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

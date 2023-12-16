@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Thống kê doanh thu</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Thống kê</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Doanh thu</a></li>
+					<!-- <li class="breadcrumb-item active">Dashboard</li> -->
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								Thống kê doanh thu theo tháng trong năm <label for="yearRevenue">
+									<select class="form-select" id="yearRevenue" name="yearRevenue"
+									onchange="handleYearRevenue()">
+										<option th:each="item, i : ${years}" th:value="${item}"
+											th:text="${item}"></option>
+								</select>
+								</label>
+							</h5>
+
+							<!-- Line Chart -->
+							<div id="revenueStatisticsYear" style="min-height: 400px;"
+								class="echart"></div>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								Thống kê theo danh mục trong năm <label for="yearRevenueCategory">
+									<select class="form-select" id="yearRevenueCategory" name="yearRevenueCategory"
+									onchange="handleYearRevenueCategory()">
+										<option th:each="item, i : ${years}" th:value="${item}"
+											th:text="${item}"></option>
+								</select>
+								</label>
+							</h5>
+
+							<!-- Pie Chart -->
+							<div id="revenueCategoryStatisticsYear" style="min-height: 400px;" class="echart"></div>
+							<!-- End Pie Chart -->
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+</head>
+
+</head>
+
+<body>
+	<div th:fragment="header">
+		<header class="header header-14">
+			<div class="header-top">
+				<div class="container">
+					<div class="col-lg-2 d-none d-lg-block">
+						<div class="d-inline-flex align-items-center">
+
+							<a class="text-dark" href="FAQh">FAQs</a>
+							<span class="text-muted px-2">|</span>
+							<a class="text-dark" href="help">Help</a>
+							<span class="text-muted px-2">|</span>
+							<a class="text-dark" href="support">Support</a>
+						</div>
+					</div>
+
+					<div class="col-lg-8">
+						<marquee behavior="scroll" direction="left">BeautyComestic Shop - Hệ Thống mỹ phẩm với nhiều
+							thương hiệu mỹ phẩm uy tín, chất lượng và đảm bảo đáp ứng nhu cầu của khách hàng</marquee>
+					</div>
+					<!-- End .header-left -->
+
+					<div class="header-right">
+
+						<ul class="top-menu">
+							<li><a style="cursor: pointer;" th:onclick="logout()" sec:authorize="isAuthenticated()"
+									sec:authentication="name">Tên
+									người dùng</a>
+								<ul class="menus" sec:authorize="isAuthenticated()">
+									<li class="login"><a style="cursor: pointer;" th:onclick="logout()"
+											sec:authentication="name">Tên người
+											dùng</a></li>
+								</ul>
+							</li>
+
+							<li><a sec:authorize="!isAuthenticated()">Liên kết</a>
+								<ul class="menus" sec:authorize="!isAuthenticated()">
+									<li class="login"><a href="#signin-modal" data-toggle="modal">Đăng nhập / Đăng
+											ký</a></li>
+								</ul>
+							</li>
+						</ul>
+						<!-- End .top-menu -->
+					</div>
+					<!-- End .header-right -->
+				</div>
+				<!-- End .container -->
+			</div>
+			<!-- End .header-top -->
+
+			<div class="header-middle">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-auto col-lg-3 col-xl-3 col-xxl-2">
+
+							<a th:href="@{/beauty/home}" class="logo"> <img th:src="@{/shop/assets/images/logo/logo.png}"
+									alt="Molla Logo" width="200" height="50">
+							</a>
+						</div>
+						<!-- End .col-xl-3 col-xxl-2 -->
+
+						<div class="col col-lg-9 col-xl-9 col-xxl-10 header-middle-right">
+							<div class="row">
+								<div class="col-lg-8 col-xxl-4-5col d-none d-lg-block">
+									<div
+										class="header-search header-search-extended header-search-visible header-search-no-radius">
+										<a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+										<form th:action="@{/beauty/shop(field=${field})}">
+											<div class="header-search-wrapper search-wrapper-wide">
+												<!-- End .select-custom -->
+												<label for="q" class="sr-only">Tìm kiếm</label> <input type="search"
+													class="form-control" name="keywords" id="keywords"
+													th:value="${keywords}" placeholder="Tìm theo tên sản phẩm ...">
+												<button class="btn btn-primary" type="submit">
+													<i class="icon-search"></i>
+												</button>
+											</div>
+											<!-- End .header-search-wrapper -->
+										</form>
+									</div>
+									<!-- End .header-search -->
+								</div>
+								<!-- End .col-xxl-4-5col -->
+
+
+								<!-- End .col-xxl-5col -->
+							</div>
+							<!-- End .row -->
+						</div>
+						<!-- End .col-xl-9 col-xxl-10 -->
+					</div>
+					<!-- End .row -->
+				</div>
+				<!-- End .container-fluid -->
+			</div>
+			<!-- End .header-middle -->
+
+			<div class="header-bottom sticky-header">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-auto col-lg-3 col-xl-3 col-xxl-2 header-left">
+							<div class="dropdown category-dropdown is-on" data-visible="false">
+								<!--    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="true" data-display="static"
+									title="Danh mục sản phẩm">Danh mục sản phẩm </a> 
+ -->
+								<!-- <div class="dropdown-menu">
+									 <nav class="side-nav">
+										<ul class="menu-vertical sf-arrows" id="menu__item__data">
+											<Danh sách danh mục -->
+								<!-- <li><a href="#">Danh mục sản phẩm</a></li>
+										</ul>
+
+									</nav> 
+
+								</div>  -->
+								<!-- End .dropdown-menu -->
+							</div>
+							<!-- End .category-dropdown -->
+						</div>
+						<!-- End .col-xl-3 col-xxl-2 -->
+
+						<div class="col col-lg-8  col-xxl-9 header-center">
+							<nav class="main-nav">
+								<ul class="menu sf-arrows">
+									<li class="megamenu-container active"><a th:href="@{/beauty/home}">Trang chủ</a></li>
+									<li><a th:href="@{/beauty/shop}" class="sf-with-ul">Cửa
+											hàng</a>
+
+										<div class="megamenu megamenu-md">
+											<div class="row no-gutters">
+												<div class="col-md-8">
+													<div class="menu-col">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="menu-title">Lựa chọn theo</div>
+																<!-- End .menu-title -->
+																<ul id="menu_title_category">
+																	<li><a th:href="@{/beauty/shop}">Danh mục</a></li>
+																</ul>
+															</div>
+															<!-- End .col-md-6 -->
+
+															<!-- End .row -->
+														</div>
+														<!-- End .menu-col -->
+													</div>
+													<!-- End .col-md-8 -->
+
+
+													<!-- End .row -->
+												</div> <!-- End .megamenu megamenu-md -->
+									</li>
+									<li><a th:href="@{/beauty/about}">Thông tin</a></li>
+									<li><a th:href="@{/beauty/contact}">Liên hệ</a></li>
+									<li sec:authorize="isAuthenticated()"><a href="#" class="sf-with-ul">Người dùng</a>
+										<ul>
+											<li><a th:href="@{/beauty/account/info-account}">Thông
+													tin tài khoản</a></li>
+											<li><a th:href="@{/beauty/like}">Danh sách yêu thích</a></li>
+											<li><a th:href="@{/beauty/order}">Danh sách đặt hàng</a></li>
+											<li><a href="@{/beauty/auth/admin/reset-password}">Đổi mật khẩu</a></li>
+										</ul>
+									</li>
+								</ul>
+								<!-- End .menu -->
+							</nav>
+							<div class="col-xl-5 col-xxl-9 col d-flex justify-content-end align-items-center">
+								<div class="header-dropdown-link">
+
+									<a sec:authorize="isAuthenticated()" th:href="@{/beauty/like}" class="wishlist-link">
+										<i class="icon-heart-o"></i><span class="wishlist-txt">Yêu thích</span>
+									</a>
+
+									<div class="dropdown cart-dropdown" id="menu__cart">
+
+									</div>
+
+								</div>
+							</div>
+
+
+							<!-- End .main-nav -->
+						</div>
+						<!-- End .col-xl-9 col-xxl-10 -->
+
+
+					</div>
+					<!-- End .row -->
+				</div>
+				<!-- End .container-fluid -->
+			</div>
+			<!-- End .header-bottom -->
+		</header>
+		<!-- End .header -->
+	</div>
+</body>
+<script th:src="@{../shop/assets/api-all.js}"></script>
+
+</html>

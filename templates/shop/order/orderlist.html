@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{shop/layout.html}">
+
+<head>
+	<title>Danh sách đặt hàng</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="page-header text-center" style="background-image: url('../shop/assets/images/page-header-bg.jpg')">
+			<div class="container">
+				<h1 class="page-title">
+					Đặt hàng<span>Cửa hàng</span>
+				</h1>
+			</div>
+			<!-- End .container -->
+		</div>
+		<!-- End .page-header -->
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/beauty/home}">Trang
+							chủ</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/beauty/shop}">Cửa
+							hàng</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Danh
+						sách đặt hàng</li>
+				</ol>
+			</div>
+			<!-- End .container -->
+		</nav>
+		<!-- End .breadcrumb-nav -->
+
+		<div class="page-content">
+			<div class="container">
+				<table class="table table-wishlist table-mobile">
+					<thead>
+						<tr>
+							<th>Số sản phẩm</th>
+							<th>Tổng tiền</th>
+							<th>Thanh toán</th>
+							<th>Vận chuyển</th>
+							<th>Trạng thái</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="item, i : ${list}" style="font-size: 1, 6rem; font-weight: 400;">
+							<td th:text="${item.quantity}"></td>
+							<td th:text="${#numbers.formatDecimal(item.totail, 0, 'POINT', 3, 'POINT')} + ' VND'"></td>
+							<td th:text="${item.pay.toString == 'UNPAID' ? 'Chưa thanh toán' : 'Đã thanh toán'}"></td>
+							<td>
+								<p th:if="${item.ship == null}">Miễn phí - 0 VND</p>
+								<div th:if="${item.ship != null}" th:switch="${item.ship.toString}">
+									<p th:case="'FREE'">Miễn phí - 0 VND</p>
+									<p th:case="'STANDART'">Tiêu chuẩn - 10.000 VND</p>
+									<p th:case="'EXPRESS'">Chính xác - 20.000 VND</p>
+									<p th:case="*">Miễn phí - 0 VND</p>
+								</div>
+							</td>
+							<td>
+								<p th:if="${item.status == 0}" class="text-danger">Đang chờ
+									xác nhận</p>
+								<div th:if="${item.status != 0}" th:switch="${item.status.toString}">
+									<p th:case="'AWAITING_CONFIRMATION'" class="text-danger">Đang
+										chờ xác nhận</p>
+									<p th:case="'CONFIRMED'" class="text-info">Đã xác nhận</p>
+									<p th:case="'BEING_TRANSPORTED'" class="text-warning">Đang
+										vận chuyển</p>
+									<p th:case="'HAS_RECEIVED_THE_GOODS'" class="text-success">Đã
+										giao hàng</p>
+									<p th:case="*" class="text-danger">Đang chờ xác nhận</p>
+								</div>
+							</td>
+							<td class="remove-col"><a class="btn-remove" href="#orderView-modal" data-toggle="modal"
+									th:data-id="${item.id}" th:onclick="orderView(this.getAttribute('data-id'))"> <i
+										class="icon-eye"></i>
+								</a></td>
+							<td class="remove-col"><button class="btn-remove" th:data-id="${item.id}"
+									th:onclick="deleteoder(this.getAttribute('data-id'))">
+									<i class="icon-close"></i>
+								</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- End .table table-wishlist -->
+				<div class="wishlist-share">
+					<div class="social-icons social-icons-sm mb-2">
+						<label class="social-label">Chia sẻ:</label> <a href="#" class="social-icon" title="Facebook"
+							target="_blank"><i class="icon-facebook-f"></i></a> <a href="#" class="social-icon"
+							title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+						<a href="#" class="social-icon" title="Instagram" target="_blank"><i
+								class="icon-instagram"></i></a> <a href="#" class="social-icon" title="Youtube"
+							target="_blank"><i class="icon-youtube"></i></a>
+						<a href="#" class="social-icon" title="Pinterest" target="_blank"><i
+								class="icon-pinterest"></i></a>
+					</div>
+					<!-- End .soial-icons -->
+				</div>
+				<!-- End .wishlist-share -->
+			</div>
+			<!-- End .container -->
+		</div>
+		<!-- End .page-content -->
+	</div>
+</body>
+
+</html>

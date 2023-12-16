@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{shop/layout.html}">
+
+<head>
+    <title>Giới thiệu</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"> 
+    <style>
+        .hi-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            animation: animateIn 1s ease-in-out;
+        }
+
+        @keyframes animateIn {
+            0% {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        */ .third-nav {
+            background-color: #f8f8f8;
+            padding: 15px, 0px;
+
+        }
+
+        .breadcrumb.txt {
+            color: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="page-header text-center" style="background-image: url('../shop/assets/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">
+                    Trang chủ/Giới thiệu<span>Giới thiệu </span>
+                </h1>
+            </div>
+            <!-- End .container -->
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="row" style="background-color: aliceblue; margin: 30px; text-align: justify;">
+                    <div class="hi-wrapper">
+                        <div class="col-sm-6 animate_animated animate_fadeInRight">
+                            <figure class="wp-block-image size-large"><img decoding="async" fetchpriority="high"
+                                    width="750px" height="600px" th:src="@{/shop/assets/images/logo/cosmetic1.jpg}"
+                                    alt="" style="margin-top: 10px;" class="wp-image-36" data-opt-lazy-loaded="false">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-left: -300px; margin-top: 50px;">
+                        <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Về mỹ phẩm
+                        </h2>
+                        <p class="has-neve-text-color-color has-text-color">"Mỹ phẩm" đã trở thành một khái niệm
+                            mang tính đặc biệt, không chỉ đơn thuần là các sản phẩm làm đẹp thông thường.</p>
+                        <p class="has-neve-text-color-color has-text-color">Vậy làm thế nào chúng ta có thể hiểu và
+                            trải nghiệm được tính chất đặc biệt của mỹ phẩm?
+                            Để đáp ứng nhu cầu này, "BeautyComestic" ra đời với mục đích nhằm chia sẻ cho bạn những
+                            dòng mỹ phẩm chất lượng và độc đáo.</p>
+                    </div>
+                </div>
+
+                <div class="row" style="background-color: aliceblue; margin: 30px; text-align: justify;">
+                    <div class="hi-wrapper">
+                        <div class="col-sm-6 animate_animated animate_fadeInRight">
+                            <figure class="wp-block-image size-large"><img decoding="async" fetchpriority="high"
+                                    width="750px" height="800px" th:src="@{/shop/assets/images/logo/Cosmetic2.jpg}"
+                                    alt="" style="margin-top: 10px;" class="wp-image-36" data-opt-lazy-loaded="false">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-left: -300px; margin-top: 30px;">
+                        <h2 class="has-neve-text-color-color has-text-color wp-block-heading text-center">Về chúng
+                            tôi</h2>
+                        <p class="has-neve-text-color-color has-text-color">BeautyComestic là một trang web chuyên
+                            về mỹ phẩm, nhằm đáp ứng cho bạn những chất lượng và dịch vụ tốt nhất. </p>
+                        <p class="has-neve-text-color-color has-text-color">Trong cuộc sống hiện đại, nhu cầu về làm
+                            đẹp và chăm sóc da ngày càng cao. Trước kia chỉ dành riêng cho phụ nữ, giờ đây nam giới
+                            cũng quan tâm đến việc chăm sóc da và làm đẹp.
+                            Đó là lý do tại sao BeautyComestic tự hào mang đến cho bạn những sản phẩm mỹ phẩm tự
+                            nhiên, an toàn và hiệu quả, giúp bạn tự tin và trở nên xinh đẹp hơn.</p>
+                        </p>
+                        <p class="has-neve-text-color-color has-text-color">Chúng tôi là một cửa hàng trực tuyến
+                            phong cách và đa dạng, với sự lựa chọn đa dạng về mỹ phẩm từ nhiều thương hiệu. Chúng
+                            tôi sẽ cung cấp cho bạn những bộ sưu tập sản phẩm giúp chăm sóc da, trang điểm, dưỡng
+                            tóc, làm đẹp cơ thể và nhiều sản phẩm khác. <br>
+                            Bất kể bạn đang gặp vấn đề gì về da, BeautyCare sẽ cung cấp cho bạn sản phẩm phù hợp để
+                            chăm sóc và cải thiện làn da một cách hiệu quả.</p>
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Vendor Start -->
+        <div class="container-fluid py-5">
+            <div class="row px-xl-5">
+                <div class="col">
+                    <div class="owl-carousel vendor-carousel">
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/ck.jpg}" alt="" width="300px">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/e.jpg}" alt="" width="300px">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/g9.jpg}" alt="" width="300px">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/mari.jpg}" alt="" width="300px">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/nive.jpg}" alt="" width="300px">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/bun.jpg}" alt="" width="300px">
+                        </div>
+                        <div class="vendor-item border p-4">
+                            <img th:src="@{/shop/assets/images/logo/dior.jpg}" alt="" width="300px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End .page-content -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+</head>
+
+<body>
+	<div th:fragment="quick-view">
+		<div class="modal fade" id="quickView-modal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" style="max-width: 1114px;" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="container quickView-container">
+							<div class="quickView-content">
+								<div class="row">
+									<div class="col-lg-7 col-md-6">
+										<div class="row">
+											<div class="product-right">
+
+												<!--  -->
+												<div class="gallery">
+													<div class="main-image-section">
+														<img id="main-view" class="main-view" src=""
+															onclick="fullScreenImage();" alt="..." />
+													</div>
+													<div id="thumbnails" class="thumbnails"></div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-5 col-md-6">
+										<div id="bodyQuickView"></div>
+
+										<div class="details-filter-row details-row-size">
+											<label for="cart_size">Kích thước:</label>
+											<div class="select-custom">
+												<select name="cart_size" id="cart_size" class="form-control">
+													<option value="s">Small</option>
+													<option value="m">Medium</option>
+													<option value="l">Large</option>
+													<option value="xl">Extra Large</option>
+												</select>
+											</div>
+											<!-- End .select-custom -->
+										</div>
+
+										<div class="details-filter-row details-row-size">
+											<label for="cart_qty">Qty:</label>
+											<div class="product-details-quantity">
+												<input type="number" id="cart_qty" name="cart_qty" class="form-control"
+													value="1" min="1" max="10" step="1" data-decimals="0" required>
+											</div>
+											<!-- End .product-details-quantity -->
+										</div>
+										<!-- End .details-filter-row -->
+
+										<div class="product-details-action">
+											<div class="details-action-wrapper">
+												<a th:onclick="addLike()" class="btn-product btn-wishlist"
+													title="Yêu thích"><span>Yêu thích</span></a>
+											</div>
+											<!-- End .details-action-wrapper -->
+											<a th:onclick="addCart()" class="btn-product btn-cart"><span>Thêm vào giỏ
+													hàng</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End .modal-body -->
+				</div>
+				<!-- End .modal-content -->
+			</div>
+			<!-- End .modal-dialog -->
+		</div>
+	</div>
+</body>
+
+</html>

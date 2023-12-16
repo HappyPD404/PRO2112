@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{shop/layout.html}">
+
+<head>
+	<title>Danh sách yêu thích</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="page-header text-center" style="background-image: url('../shop/assets/images/page-header-bg.jpg')">
+			<div class="container">
+				<h1 class="page-title">
+					Yêu thích<span>Cửa hàng</span>
+				</h1>
+			</div>
+			<!-- End .container -->
+		</div>
+		<!-- End .page-header -->
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/beauty/home}">Trang
+							chủ</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/beauty/shop}">Cửa
+							hàng</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Yêu
+						thích</li>
+				</ol>
+			</div>
+			<!-- End .container -->
+		</nav>
+		<!-- End .breadcrumb-nav -->
+
+		<div class="page-content">
+			<div class="container">
+				<table class="table table-wishlist table-mobile">
+					<thead>
+						<tr>
+							<th>Sản phẩm</th>
+							<th>Giá</th>
+							<th>Trạng thái</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="item, i : ${list}">
+							<td class="product-col">
+								<div class="product">
+									<figure class="product-media">
+										<a th:href="@{/molla/product-detail(id=${item.product.id})}">
+											<img th:src="${item.product.banner} == null ? '/shop/assets/images/no-image.jpg' : '/uploads/' + ${item.product.banner}"
+												alt="Product image">
+										</a>
+									</figure>
+
+									<h3 class="product-title">
+										<a th:href="@{/beauty/product-detail(id=${item.product.id})}"
+											th:text="${item.product.name}">Beige knitted elastic
+											runner shoes</a>
+									</h3>
+									<!-- End .product-title -->
+								</div> <!-- End .product -->
+							</td>
+							<td class="price-col"
+								th:text="${#numbers.formatDecimal(item.product.price, 0, 'POINT', 3, 'POINT')} + ' VND'">
+							</td>
+
+							<td class="stock-col" th:if="${item.product.quantity > 0}"><span class="in-stock">Còn
+									hàng</span></td>
+							<td class="stock-col" th:if="${item.product.quantity <= 0}"><span class="out-of-stock">Tạm
+									hết hàng</span></td>
+
+							<td class="remove-col"><button class="btn-remove" th:data-id="${item.id}"
+									th:onclick="deleteLike(this.getAttribute('data-id'))">
+									<i class="icon-close"></i>
+								</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- End .table table-wishlist -->
+				<div class="wishlist-share">
+					<div class="social-icons social-icons-sm mb-2">
+						<label class="social-label">Chia sẻ:</label> <a href="#" class="social-icon" title="Facebook"
+							target="_blank"><i class="icon-facebook-f"></i></a> <a href="#" class="social-icon"
+							title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+						<a href="#" class="social-icon" title="Instagram" target="_blank"><i
+								class="icon-instagram"></i></a> <a href="#" class="social-icon" title="Youtube"
+							target="_blank"><i class="icon-youtube"></i></a>
+						<a href="#" class="social-icon" title="Pinterest" target="_blank"><i
+								class="icon-pinterest"></i></a>
+					</div>
+					<!-- End .soial-icons -->
+				</div>
+				<!-- End .wishlist-share -->
+			</div>
+			<!-- End .container -->
+		</div>
+		<!-- End .page-content -->
+	</div>
+</body>
+
+</html>

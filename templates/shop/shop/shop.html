@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{shop/layout.html}">
+
+<head>
+	<title>Cửa hàng</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="page-header text-center" style="background-image: url('../shop/assets/images/page-header-bg.jpg')">
+			<div class="container">
+				<h1 class="page-title">
+					Danh sách sản phẩm<span>Cửa hàng</span>
+				</h1>
+			</div>
+			<!-- End .container -->
+		</div>
+		<!-- End .page-header -->
+		<nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/beauty/home}">Trang
+							chủ</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/beauty/shop}">Shop</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Danh
+						sách sản phẩm</li>
+				</ol>
+			</div>
+			<!-- End .container -->
+		</nav>
+		<!-- End .breadcrumb-nav -->
+
+		<div class="page-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="toolbox">
+							<div class="toolbox-left">
+								<div class="toolbox-sort">
+									<label for="sortby">Hiển thị:</label>
+									<div class="select-custom">
+										<form
+											th:action="@{/beauty/shop(field=${field}, keywords=${keywords}, category_id=${categoryId}, color=${color}, brand_id=${brandId})}">
+											<select class="form-control" name="size" id="size"
+												onchange="this.form.submit()">
+												<option value="12" th:selected="${resultPage.size == 12}">12</option>
+												<option value="16" th:selected="${resultPage.size == 16}">16</option>
+												<option value="24" th:selected="${resultPage.size == 24}">24</option>
+												<option value="32" th:selected="${resultPage.size == 32}">32</option>
+												<option value="48" th:selected="${resultPage.size == 48}">48</option>
+											</select>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- End .toolbox-left -->
+
+							<div class="toolbox-right">
+								<div class="toolbox-sort">
+									<label for="sortby">Sắp xếp theo:</label>
+									<div class="select-custom">
+										<select name="sortby" id="sortby" class="form-control">
+											<option value="popularity" selected="selected">Tên
+												sản phẩm</option>
+											<option value="rating">Giá</option>
+											<option value="date">Giảm giá</option>
+										</select>
+									</div>
+								</div>
+								<!-- End .toolbox-sort -->
+							</div>
+							<!-- End .toolbox-right -->
+						</div>
+						<!-- End .toolbox -->
+
+						<div class="products mb-3">
+							<div class="row justify-content-center">
+								<!-- Danh sách sản phẩm -->
+								<div class="col-6 col-md-4 col-lg-4 col-xl-3" th:each="item, i : ${resultPage.content}">
+									<div class="product product-7 text-center">
+										<figure class="product-media">
+
+											<span
+												th:if="${item.startDayDiscount != null and item.endDayDiscount != null and item.discount > 0}">
+												<span class="product-label label-sale"
+													th:if="${item.startDayDiscount.before(#dates.createNow()) and item.endDayDiscount.after(#dates.createNow())}"
+													th:text="${item.discount + ' % giảm'}"></span> <span
+													class="product-label"
+													th:if="${item.startDayDiscount.after(#dates.createNow())}">Sắp
+													giảm giá</span>
+											</span>
+
+											<a th:href="@{/beauty/product-detail(id=${item.id})}"> <img
+													th:src="${item.banner} == null ? '/shop/assets/images/no-image.jpg' : '/uploads/' + ${item.banner}"
+													alt="Product image" class="product-image">
+											</a>
+
+											<div class="product-action-vertical">
+												<a th:data-id="${item.id}"
+													th:onclick="addLikeShop(this.getAttribute('data-id'))"
+													class="btn-product-icon btn-wishlist btn-expandable"><span>Yêu
+														thích</span></a>
+
+												<a href="#quickView-modal" data-toggle="modal" th:data-id="${item.id}"
+													th:onclick="quickView(this.getAttribute('data-id'))"
+													class="btn-product-icon btn-quickview"><span>Xem</span></a>
+											</div>
+											<!-- End .product-action-vertical -->
+
+											<div class="product-action">
+												<a href="#quickView-modal" data-toggle="modal" th:data-id="${item.id}"
+													th:onclick="quickView(this.getAttribute('data-id'))"
+													class="btn-product btn-cart"><span>Thêm giỏ hàng</span></a>
+											</div>
+											<!-- End .product-action -->
+										</figure>
+										<!-- End .product-media -->
+
+										<div class="product-body">
+											<div class="product-cat">
+												<a href="#" th:text="${item.category.name}">Women</a>
+											</div>
+											<!-- End .product-cat -->
+											<h3 class="product-title">
+												<a th:href="@{/beauty/product-detail(id=${item.id})}"
+													th:text="${item.name}">Tên sản phẩm</a>
+											</h3>
+
+											<!-- shop -->
+											<h2 class="product-title">
+												<a th:href="@{/beauty/product-detail(id=${item.id})}"
+													th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 3, 'POINT')} + ' VND'"
+													style="color: #fcb941"></a>
+											</h2>
+											<!-- End .product-title -->
+											<div class="product-price"
+												th:if="${item.startDayDiscount == null or item.endDayDiscount == null or item.discount <= 0}"
+												th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">
+												150.000
+												VND</div>
+
+											<div class="product-price"
+												th:if="${item.startDayDiscount != null and item.endDayDiscount != null and item.discount > 0}">
+												<span th:if="${item.startDayDiscount.after(#dates.createNow())}"
+													th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+													VND</span> <span
+													th:if="${item.startDayDiscount.before(#dates.createNow()) and item.endDayDiscount.after(#dates.createNow())}">
+													<span class="new-price"
+														th:text="${#numbers.formatDecimal(item.price - (item.price * item.discount * 0.01), 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+														VND</span> <span class="old-price"> <del
+															th:text="${#numbers.formatDecimal(item.price, 0, 'POINT', 0, 'POINT')} + ' VND'">
+															150.000 VND</del></span>
+
+												</span>
+											</div>
+											<!-- End .product-price -->
+										</div>
+										<!-- End .product-body -->
+									</div>
+									<!-- End .product -->
+								</div>
+								<!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+							</div>
+							<!-- End .row -->
+						</div>
+						<!-- End .products -->
+
+						<nav aria-label="Page navigation" th:if="${resultPage.totalPages > 0}">
+							<ul class="pagination justify-content-center">
+
+								<li th:class="${resultPage.number + 1 == 1} ? 'page-item active' : 'page-item'"><a
+										class="page-link page-link-prev"
+										th:href="@{/beauty/shop(field=${field}, page=${1}, size=${resultPage.size}, keywords=${keywords}, category_id=${categoryId}, color=${color}, brand_id=${brandId})}"
+										aria-label="Previous"> <span aria-hidden="true"><i
+												class="icon-long-arrow-left"></i></span>Prev
+									</a></li>
+
+								<li th:each=" pageNumber : ${pageNumbers}" th:if="${resultPage.totalPages > 1}"
+									th:class="${pageNumber == resultPage.number + 1} ? 'page-item active' : 'page-item'">
+									<a class="page-link"
+										th:href="@{/beauty/shop(field=${field}, page=${pageNumber}, size=${resultPage.size}, keywords=${keywords}, category_id=${categoryId}, color=${color}, brand_id=${brandId})}"
+										th:text="${pageNumber}">1</a>
+								</li>
+
+								<li
+									th:class="${resultPage.number + 1 == resultPage.totalPages} ? 'page-item active' : 'page-item'">
+									<a class="page-link page-link-next"
+										th:href="@{/beauty/shop(field=${field}, page=${resultPage.totalPages}, size=${resultPage.size}, keywords=${keywords}, category_id=${categoryId}, color=${color}, brand_id=${brandId})}"
+										aria-label="Next"> Next <span aria-hidden="true"><i
+												class="icon-long-arrow-right"></i></span>
+									</a>
+								</li>
+
+							</ul>
+						</nav>
+					</div>
+					<!-- End .col-lg-9 -->
+					<aside class="col-lg-3 order-lg-first">
+						<div class="sidebar sidebar-shop">
+							<div class="widget widget-clean">
+								<label>Lọc theo:</label> <a th:href="@{/beauty/shop}" class="sidebar-filter-clear">Xoá
+									bộ
+									lọc</a>
+							</div>
+							<!-- End .widget widget-clean -->
+
+							<div class="widget widget-collapsible">
+								<h3 class="widget-title">
+									<a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
+										aria-controls="widget-1"> Danh mục </a>
+								</h3>
+								<!-- End .widget-title -->
+
+								<div class="collapse show" id="widget-1">
+									<div class="widget-body">
+										<div class="filter-items filter-items-count">
+											<div class="filter-item" th:each="item, i : ${categories}">
+												<label> <a
+														th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, category_id=${item.id})}"
+														th:text="${item.name}"></a>
+												</label>
+												<!-- End .custom-checkbox -->
+											</div>
+											<!-- End .filter-item -->
+										</div>
+										<!-- End .filter-items -->
+									</div>
+									<!-- End .widget-body -->
+								</div>
+								<!-- End .collapse -->
+							</div>
+							<!-- End .widget -->
+
+							<div class="widget widget-collapsible">
+								<h3 class="widget-title">
+									<a data-toggle="collapse" href="#widget-3" role="button" aria-expanded="true"
+										aria-controls="widget-3"> Màu sắc </a>
+								</h3>
+								<!-- End .widget-title -->
+
+								<div class="collapse show" id="widget-3">
+									<div class="widget-body">
+										<div class="filter-colors">
+											<a th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#000000')}"
+												style="background: #000000;"><span class="sr-only">Đen</span></a>
+
+											<a th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#ffffff')}"
+												style="background: #ffffff;"><span class="sr-only">Trắng</span></a>
+
+											<a th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#0419f7')}"
+												style="background: #0419f7;"><span class="sr-only">Xanh
+													dương</span></a> <a
+												th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#ff0000')}"
+												style="background: #ff0000;"><span class="sr-only">Đỏ</span></a>
+
+											<a th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#fff200')}"
+												style="background: #fff200;"><span class="sr-only">Vàng</span></a>
+
+											<a th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#00ff11')}"
+												style="background: #00ff11;"><span class="sr-only">Xanh
+													lá</span></a> <a
+												th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#f200ff')}"
+												style="background: #f200ff;"><span class="sr-only">Tím</span></a>
+
+											<a th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, color='#fc05b2')}"
+												style="background: #fc05b2;"><span class="sr-only">Hồng</span></a>
+										</div>
+										<!-- End .filter-colors -->
+									</div>
+									<!-- End .widget-body -->
+								</div>
+								<!-- End .collapse -->
+							</div>
+							<!-- End .widget -->
+
+
+							<!-- End .widget-title -->
+
+							<div class="collapse show" id="widget-4">
+								<div class="widget-body">
+									<div class="filter-items">
+										<div class="filter-item" th:each="item, i : ${brands}">
+											<label> <a
+													th:href="@{/beauty/shop(field=${field}, size=${resultPage.size}, keywords=${keywords}, brand_id=${item.id})}"
+													th:text="${item.name}"></a>
+											</label>
+										</div>
+										<!-- End .filter-item -->
+									</div>
+									<!-- End .filter-items -->
+								</div>
+								<!-- End .widget-body -->
+							</div>
+							<!-- End .collapse -->
+						</div>
+						<!-- End .widget -->
+				</div>
+				<!-- End .sidebar sidebar-shop -->
+				</aside>
+				<!-- End .col-lg-3 -->
+			</div>
+			<!-- End .row -->
+		</div>
+		<!-- End .container -->
+	</div>
+	<!-- End .page-content -->
+	</div>
+</body>
+
+</html>
