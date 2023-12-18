@@ -1,0 +1,28 @@
+.gallery {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    max-height: 450px;
+}
+
+.thumbnails {
+    width: 20%;
+    overflow-y: auto;
+}
+
+.thumbnails img {
+    width: 100%;
+    opacity: 0.7;
+    cursor: pointer;
+    -webkit-transition: opacity 0.3s ease 0s;
+    -moz-transition: opacity 0.3s ease 0s;
+    transition: opacity 0.3s ease 0s;
+}
+
+.thumbnails img:hover {
+    opacity: 1;
+}
+
+.thumbnails img:focus {
+    opacity: 1
+}

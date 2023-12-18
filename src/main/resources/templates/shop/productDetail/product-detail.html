@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{shop/layout.html}">
+
+<head>
+	<title>Chi tiết sản phẩm</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+			<div class="container d-flex align-items-center">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/beauty/home}">Trang
+							chủ</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/beauty/shop}">Cửa
+							hàng</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Chi
+						tiết sản phẩm</li>
+				</ol>
+
+			</div>
+			<!-- End .container -->
+		</nav>
+		<!-- End .breadcrumb-nav -->
+
+		<div class="page-content">
+			<div class="container">
+				<div class="product-details-top">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="product-gallery product-gallery-separated">
+
+								<span
+									th:if="${product.startDayDiscount != null and product.endDayDiscount != null and product.discount > 0}">
+									<span class="product-label label-sale"
+										th:if="${product.startDayDiscount.before(#dates.createNow()) and product.endDayDiscount.after(#dates.createNow())}"
+										th:text="${product.discount + ' % giảm'}"></span>
+								</span> <span
+									th:if="${product.startDayDiscount != null and product.endDayDiscount != null and product.discount > 0}">
+									<span class="product-label"
+										th:if="${product.startDayDiscount.after(#dates.createNow())}">Sắp
+										giảm giá</span>
+								</span>
+
+								<div class="row">
+									<div class="col-md-6 offset-sm-3" th:each="item, i : ${listImage}"
+										style="position: relative; border: 2px solid black;">
+										<figure class="product-separated-item">
+											<img th:src="${item.name} == null ? '/shop/assets/images/no-image.jpg' : '/uploads/' + ${item.name}"
+												alt="product image">
+										</figure>
+									</div>
+								</div>
+							</div>
+							<!-- End .product-gallery -->
+						</div>
+						<!-- End .col-md-6 -->
+
+						<div class="col-md-6">
+							<div class="product-details sticky-content">
+								<h1 class="product-title" th:text="${product.name}"></h1>
+
+								<div class="details-filter-row details-row-size">
+									<label for="size_product">Giá:</label>
+									<a th:href="@{/beauty/product-detail(id=${product.id})}"
+										th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 3, 'POINT')} + ' VND'"
+										style="font-size: 2rem"></a>
+								</div>
+								<!-- End .product-title -->
+
+								<!-- <div class="product-price"
+									th:if="${product.startDayDiscount == null or product.endDayDiscount == null or product.discount <= 0}"
+									th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 3, 'POINT')} + ' VND'">
+									150.000
+									VND</div>
+
+								<div class="product-price"
+									th:if="${product.startDayDiscount != null and product.endDayDiscount != null and product.discount > 0}">
+									<span th:if="${product.startDayDiscount.after(#dates.createNow())}"
+										th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 3, 'POINT')} + ' VND'">150.000
+										VND</span> <span
+										th:if="${product.startDayDiscount.before(#dates.createNow()) and product.endDayDiscount.after(#dates.createNow())}">
+										<span class="new-price"
+											th:text="${#numbers.formatDecimal(product.price - (product.price * product.discount * 0.01), 0, 'POINT', 0, 'POINT')} + ' VND'">150.000
+											VND</span> <span class="old-price"> <del
+												th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 3, 'POINT')} + ' VND'">
+												150.000 VND</del></span>
+
+									</span>
+								</div> -->
+								<!-- End .product-price -->
+
+								<div class="details-filter-row details-row-size">
+									<label for="size_product">Kích thước:</label>
+									<div class="select-custom">
+										<select name="cart_detail_size" id="cart_detail_size" class="form-control">
+											<option value="s">Small</option>
+											<option value="m">Medium</option>
+											<option value="l">Large</option>
+											<option value="xl">Extra Large</option>
+										</select>
+									</div>
+									<!-- End .select-custom -->
+								</div>
+								<!-- End .details-filter-row -->
+
+								<div class="details-filter-row details-row-size">
+									<label for="qty">Số lượng:</label>
+									<div class="product-details-quantity">
+										<input type="number" id="cart_detail_qty" class="form-control" value="1" min="1"
+											max="10" step="1" data-decimals="0" required>
+									</div>
+									<!-- End .product-details-quantity -->
+								</div>
+								<!-- End .details-filter-row -->
+
+								<div class="product-details-action">
+									<a th:data-id="${product.id}"
+										th:onclick="addCartDetail(this.getAttribute('data-id'))"
+										class="btn-product btn-cart" style="cursor: pointer;"><span>Thêm
+											vào giỏ hàng</span></a>
+
+									<div class="details-action-wrapper">
+										<a href="#" class="btn-product btn-wishlist" title="Yêu thích"
+											th:data-id="${product.id}"
+											th:onclick="addLikeShop(this.getAttribute('data-id'))"><span>Yêu
+												thích</span></a>
+									</div>
+									<!-- End .details-action-wrapper -->
+								</div>
+
+
+								<!-- End .product-details-footer -->
+
+								<div class="accordion accordion-plus product-details-accordion" id="product-accordion">
+									<div class="card card-box card-sm">
+										<div class="card-header" id="product-desc-heading">
+											<h2 class="card-title">
+												<a class="collapsed" role="button" data-toggle="collapse"
+													href="#product-accordion-desc" aria-expanded="false"
+													aria-controls="product-accordion-desc"> Mô tả sản phẩm
+												</a>
+											</h2>
+										</div>
+										<!-- End .card-header -->
+										<div id="product-accordion-desc" class="collapse"
+											aria-labelledby="product-desc-heading" data-parent="#product-accordion">
+											<div class="card-body">
+												<div class="product-desc-content" th:utext="${product.description}">
+												</div>
+												<!-- End .product-desc-content -->
+											</div>
+											<!-- End .card-body -->
+										</div>
+										<!-- End .collapse -->
+									</div>
+									<!-- End .card -->
+
+									<!-- End .collapse -->
+								</div>
+								<!-- End .card -->
+
+								<div class="card card-box card-sm">
+									<div class="card-header" id="product-shipping-heading">
+										<h2 class="card-title">
+											<a class="collapsed" role="button" data-toggle="collapse"
+												href="#product-accordion-shipping" aria-expanded="false"
+												aria-controls="product-accordion-shipping"> Vận chuyển
+											</a>
+										</h2>
+									</div>
+									<!-- End .card-header -->
+									<div id="product-accordion-shipping" class="collapse"
+										aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
+										<div class="card-body">
+											<div class="product-desc-content">
+												<p>
+													Chúng tôi giao hàng đến hơn 100 quốc gia trên thế giới. Vì
+													chi tiết đầy đủ về các tùy chọn giao hàng chúng tôi cung
+													cấp, vui lòng xem <a href="#">Thông tin giao hàng</a><br>
+													của chúng tôi Chúng tôi hy vọng bạn sẽ thích mỗi lần mua
+													hàng, nhưng nếu bạn cần quay lại một mặt hàng bạn có thể
+													làm như vậy trong vòng một tháng kể từ khi nhận được. Cho
+													đầy đủ chi tiết về cách trả lại, vui lòng xem <a của chúng tôi
+														href="#">Trả về thông tin</a>
+												</p>
+											</div>
+											<!-- End .product-desc-content -->
+										</div>
+										<!-- End .card-body -->
+									</div>
+									<!-- End .collapse -->
+								</div>
+								<!-- End .card -->
+							</div>
+							<!-- End .accordion -->
+						</div>
+						<!-- End .product-details -->
+					</div>
+					<!-- End .col-md-6 -->
+				</div>
+				<!-- End .row -->
+			</div>
+			<!-- End .product-details-top -->
+
+			<hr class="mt-3 mb-5">
+
+			<h2 class="title text-center mb-4">Các sản phẩm bạn có thể thích </h2>
+			<!-- End .title text-center -->
+			<div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+				data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "480": {
+                                    "items":2
+                                },
+                                "768": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                },
+                                "1200": {
+                                    "items":4,
+                                    "nav": true,
+                                    "dots": false
+                                }
+                            }
+                        }'>
+				<div class="product product-7">
+					<figure class="product-media">
+						<span class="product-label label-new">New</span>
+						<a href="product.html"> <img src="/uploads/Che khuyet diem (1).jpg" alt="Product image"
+								class="product-image">
+						</a>
+
+						<div class="product-action-vertical">
+							<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+									to wishlist</span></a> <a href="popup/quickView.html"
+								class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+									view</span></a> <a href="#" class="btn-product-icon btn-compare"
+								title="Compare"><span>Compare</span></a>
+						</div>
+						<!-- End .product-action-vertical -->
+
+						<div class="product-action">
+							<a href="#" class="btn-product btn-cart"><span>add to
+									cart</span></a>
+						</div>
+						<!-- End .product-action -->
+					</figure>
+					<!-- End .product-media -->
+
+					<div class="product-body">
+						<div class="product-cat">
+							<a href="#">che khuyết điểm - conceaier</a>
+						</div>
+						<!-- End .product-cat -->
+						<h3 class="product-title">
+							<a href="product.html">Che Khuyết Điểm Catrice<br>
+
+							</a>
+						</h3>
+						<!-- End .product-title -->
+						<div class="product-price">198.000 VND</div>
+						<!-- End .product-price -->
+						<div class="ratings-container">
+							<div class="ratings">
+								<div class="ratings-val" style="width: 20%;"></div>
+								<!-- End .ratings-val -->
+							</div>
+							<!-- End .ratings -->
+							<span class="ratings-text">( 2 Reviews )</span>
+						</div>
+						<!-- End .rating-container -->
+
+						<div class="product-nav product-nav-dots">
+							<a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color
+									name</span></a> <a href="#" style="background: #7fc5ed;"><span class="sr-only">Color
+									name</span></a> <a href="#" style="background: #e8c97a;"><span class="sr-only">Color
+									name</span></a>
+						</div>
+						<!-- End .product-nav -->
+					</div>
+					<!-- End .product-body -->
+				</div>
+				<!-- End .product -->
+
+				<div class="product product-7">
+					<figure class="product-media">
+						<span class="product-label label-out">Out of Stock</span>
+						<a href="product.html"> <img src="/uploads/Lipstick(1).jpg" alt="Product image"
+								class="product-image">
+						</a>
+
+						<div class="product-action-vertical">
+							<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+									to wishlist</span></a> <a href="popup/quickView.html"
+								class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+									view</span></a> <a href="#" class="btn-product-icon btn-compare"
+								title="Compare"><span>Compare</span></a>
+						</div>
+						<!-- End .product-action-vertical -->
+
+						<div class="product-action">
+							<a href="#" class="btn-product btn-cart"><span>add to
+									cart</span></a>
+						</div>
+						<!-- End .product-action -->
+					</figure>
+					<!-- End .product-media -->
+
+					<div class="product-body">
+						<div class="product-cat">
+							<a href="#">Son thỏi - Lipstick</a>
+						</div>
+						<!-- End .product-cat -->
+						<h3 class="product-title">
+							<a href="product.html">Son Thỏi Mịn Lì Lâu Trôi Bobbi Brown</a>
+						</h3>
+						<!-- End .product-title -->
+						<div class="product-price">
+							<span class="out-price">145.000 VND</span>
+						</div>
+						<!-- End .product-price -->
+						<div class="ratings-container">
+							<div class="ratings">
+								<div class="ratings-val" style="width: 80%;"></div>
+								<!-- End .ratings-val -->
+							</div>
+							<!-- End .ratings -->
+							<span class="ratings-text">( 6 Reviews )</span>
+						</div>
+						<!-- End .rating-container -->
+					</div>
+					<!-- End .product-body -->
+				</div>
+				<!-- End .product -->
+
+				<div class="product product-7">
+					<figure class="product-media">
+						<span class="product-label label-top">Top</span>
+						<a href="product.html"> <img src="/uploads/Mascara (1).jpg" alt="Product image"
+								class="product-image">
+						</a>
+
+						<div class="product-action-vertical">
+							<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+									to wishlist</span></a> <a href="popup/quickView.html"
+								class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+									view</span></a> <a href="#" class="btn-product-icon btn-compare"
+								title="Compare"><span>Compare</span></a>
+						</div>
+						<!-- End .product-action-vertical -->
+
+						<div class="product-action">
+							<a href="#" class="btn-product btn-cart"><span>add to
+									cart</span></a>
+						</div>
+						<!-- End .product-action -->
+					</figure>
+					<!-- End .product-media -->
+
+					<div class="product-body">
+						<div class="product-cat">
+							<a href="#">Mascara</a>
+						</div>
+						<!-- End .product-cat -->
+						<h3 class="product-title">
+							<a href="product.html">Mascara 2 đầu Mistine</a>
+						</h3>
+						<!-- End .product-title -->
+						<div class="product-price">105.000 VND</div>
+						<!-- End .product-price -->
+						<div class="ratings-container">
+							<div class="ratings">
+								<div class="ratings-val" style="width: 80%;"></div>
+								<!-- End .ratings-val -->
+							</div>
+							<!-- End .ratings -->
+							<span class="ratings-text">( 1 Reviews )</span>
+						</div>
+						<!-- End .rating-container -->
+
+						<div class="product-nav product-nav-dots">
+							<a href="#" class="active" style="background: #8b513d;"><span class="sr-only">Color
+									name</span></a> <a href="#" style="background: #333333;"><span class="sr-only">Color
+									name</span></a> <a href="#" style="background: #d2b99a;"><span class="sr-only">Color
+									name</span></a>
+						</div>
+						<!-- End .product-nav -->
+					</div>
+					<!-- End .product-body -->
+				</div>
+				<!-- End .product -->
+
+				<div class="product product-7">
+					<figure class="product-media">
+						<a href="product.html"> <img src="/uploads/Kem lot (4).jpg" alt="Product image"
+								class="product-image">
+						</a>
+
+						<div class="product-action-vertical">
+							<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+									to wishlist</span></a> <a href="popup/quickView.html"
+								class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+									view</span></a> <a href="#" class="btn-product-icon btn-compare"
+								title="Compare"><span>Compare</span></a>
+						</div>
+						<!-- End .product-action-vertical -->
+
+						<div class="product-action">
+							<a href="#" class="btn-product btn-cart"><span>add to
+									cart</span></a>
+						</div>
+						<!-- End .product-action -->
+					</figure>
+					<!-- End .product-media -->
+
+					<div class="product-body">
+						<div class="product-cat">
+							<a href="#">kem lót - makeup pmer</a>
+						</div>
+						<!-- End .product-cat -->
+						<h3 class="product-title">
+							<a href="product.html">Kem Lót Karadium Yogurt Pongdang Tone Up</a>
+						</h3>
+						<!-- End .product-title -->
+						<div class="product-price">150.000 VND</div>
+						<!-- End .product-price -->
+						<div class="ratings-container">
+							<div class="ratings">
+								<div class="ratings-val" style="width: 0%;"></div>
+								<!-- End .ratings-val -->
+							</div>
+							<!-- End .ratings -->
+							<span class="ratings-text">( 0 Reviews )</span>
+						</div>
+						<!-- End .rating-container -->
+					</div>
+					<!-- End .product-body -->
+				</div>
+				<!-- End .product -->
+
+				<div class="product product-7">
+					<figure class="product-media">
+						<a href="product.html"> <img src="/uploads/st6.jpg" alt="Product image" class="product-image">
+						</a>
+
+						<div class="product-action-vertical">
+							<a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+									to wishlist</span></a> <a href="popup/quickView.html"
+								class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+									view</span></a> <a href="#" class="btn-product-icon btn-compare"
+								title="Compare"><span>Compare</span></a>
+						</div>
+						<!-- End .product-action-vertical -->
+
+						<div class="product-action">
+							<a href="#" class="btn-product btn-cart"><span>add to
+									cart</span></a>
+						</div>
+						<!-- End .product-action -->
+					</figure>
+					<!-- End .product-media -->
+
+					<div class="product-body">
+						<div class="product-cat">
+							<a href="#">Sữa tắm - Shower Gel</a>
+						</div>
+						<!-- End .product-cat -->
+						<h3 class="product-title">
+							<a href="product.html">Sữa tắm Bioré Hương Trà Xanh Mát</a>
+						</h3>
+						<!-- End .product-title -->
+						<div class="product-price">149.000 VND</div>
+						<!-- End .product-price -->
+						<div class="ratings-container">
+							<div class="ratings">
+								<div class="ratings-val" style="width: 20%;"></div>
+								<!-- End .ratings-val -->
+							</div>
+							<!-- End .ratings -->
+							<span class="ratings-text">( 2 Reviews )</span>
+						</div>
+						<!-- End .rating-container -->
+					</div>
+					<!-- End .product-body -->
+				</div>
+				<!-- End .product -->
+			</div>
+			<!-- End .owl-carosel -->
+		</div>
+		<!-- End .container -->
+	</div>
+	<!-- End .page-content -->
+	</div>
+</body>
+
+</html>

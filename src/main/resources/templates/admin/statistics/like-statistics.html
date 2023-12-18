@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Thống kê lượt thích</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Thống kê lượt thích</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Lượt thích</a></li>
+					<!-- <li class="breadcrumb-item active">Dashboard</li> -->
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Thống kê lượt thích theo tháng trong năm <label for="yearLike">
+									<select class="form-select" id="yearLike" name="yearLike"
+									onchange="handleYearLike()">
+										<option th:each="item, i : ${years}" th:value="${item}"
+											th:text="${item}"></option>
+								</select>
+								</label></h5>
+
+							<!-- Bar Chart -->
+							<div id="likeStatisticsYear" style="min-height: 400px;" class="echart"></div>
+
+							<!-- End Bar Chart -->
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Thống kê lượt thích theo danh mục</h5>
+
+							<!-- Pie Chart -->
+							<div id="likeStatisticsCategory" style="min-height: 400px;" class="echart"></div>
+
+							<!-- End Pie Chart -->
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

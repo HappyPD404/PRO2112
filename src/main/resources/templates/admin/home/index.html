@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Trang chủ</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section class="section dashboard">
+			<div class="row">
+
+				<!-- Sales Card -->
+				<div class="col-md-4">
+					<div class="card info-card sales-card">
+
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Lọc</h6>
+								</li>
+
+								<li><a class="dropdown-item"
+									th:onclick="showCountOrderDate()">Theo ngày</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showCountOrderMonth()">Theo tháng</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showCountOrderYear()">Theo năm</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body">
+							<h5 class="card-title">
+								Đơn hàng <span id="showFilterCountOrder"></span>
+							</h5>
+
+							<div class="d-flex align-items-center">
+								<div
+									class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+									<i class="bi bi-cart"></i>
+								</div>
+								<div class="ps-3" id="countHomeOrder"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- End Sales Card -->
+
+				<!-- Revenue Card -->
+				<div class="col-md-4">
+					<div class="card info-card revenue-card">
+
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Lọc</h6>
+								</li>
+
+								<li><a class="dropdown-item" th:onclick="showRevenueDate()">Theo
+										ngày</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showRevenueMonth()">Theo tháng</a></li>
+								<li><a class="dropdown-item" th:onclick="showRevenueYear()">Theo
+										năm</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body">
+							<h5 class="card-title">
+								Tổng tiền <span id="showFilterRevenue"></span>
+							</h5>
+
+							<div class="d-flex align-items-center">
+								<div
+									class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+									<i class="bi bi-currency-dollar"></i>
+								</div>
+								<div class="ps-3" id="homeRevenue"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- End Revenue Card -->
+
+				<!-- Customers Card -->
+				<div class="col-xl-4">
+
+					<div class="card info-card customers-card">
+
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Lọc</h6>
+								</li>
+
+								<li><a class="dropdown-item"
+									th:onclick="showCustomersDate()">Theo ngày</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showCustomersMonth()">Theo tháng</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showCustomersYear()">Theo năm</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body">
+							<h5 class="card-title">
+								Người dùng <span id="showFilterCustomers"></span>
+							</h5>
+
+							<div class="d-flex align-items-center">
+								<div
+									class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+									<i class="bi bi-people"></i>
+								</div>
+								<div class="ps-3" id="homeCustomers"></div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<!-- End Customers Card -->
+
+				<!-- Recent Sales -->
+				<div class="col-12">
+					<div class="card recent-sales overflow-auto">
+
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Lọc</h6>
+								</li>
+
+								<li><a class="dropdown-item"
+									th:onclick="showTotailOrderDate()">Theo ngày</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showTotailOrderMonth()">Theo tháng</a></li>
+								<li><a class="dropdown-item"
+									th:onclick="showTotailOrderYear()">Theo năm</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body">
+							<h5 class="card-title">
+								Top 5 Hoá đơn giá trị lớn nhất <span id="showFilterTotailOrder"></span>
+							</h5>
+
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col">Tên khách hàng</th>
+										<th scope="col">Email</th>
+										<th scope="col">Số điện thoại</th>
+										<th scope="col">Tổng số sản phẩm</th>
+										<th scope="col">Tổng tiền</th>
+									</tr>
+								</thead>
+								<tbody id="homeTotailOrder">
+
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+				</div>
+				<!-- End Recent Sales -->
+
+				<!-- Top Selling -->
+				<div class="col-12">
+					<div class="card top-selling overflow-auto">
+
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Lọc</h6>
+								</li>
+
+								<li><a class="dropdown-item" th:onclick="showSalerDate()">Theo
+										ngày</a></li>
+								<li><a class="dropdown-item" th:onclick="showSalerMonth()">Theo
+										tháng</a></li>
+								<li><a class="dropdown-item" th:onclick="showSalerYear()">Theo
+										năm</a></li>
+							</ul>
+						</div>
+
+						<div class="card-body pb-0">
+							<h5 class="card-title">
+								Top 5 sản phẩm bán chạy nhất <span id="showFilterSaler"></span>
+							</h5>
+
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">Tên sản phẩm</th>
+										<th scope="col">Số lượng đã bán</th>
+										<th scope="col">Tổng tiền</th>
+									</tr>
+								</thead>
+								<tbody id="homeSaler">
+
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+				</div>
+				<!-- End Top Selling -->
+
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

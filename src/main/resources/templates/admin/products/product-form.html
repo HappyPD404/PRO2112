@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Sản phẩm</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Sản phẩm</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/products}">Danh
+							sách</a></li>
+					<li class="breadcrumb-item active">Nhập sản phẩm</li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+
+					<form th:action="@{/products/saveOrUpdate/submit}" method="POST"
+						th:object="${productDto}" enctype="multipart/form-data">
+						<input type="hidden" th:field="*{id}">
+						<div class="card">
+							<div class="card-body mt-3">
+								<div class="row mb-3">
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="name" class="col-sm-4 col-form-label">Tên
+												sản phẩm</label>
+											<div class="col-sm-8">
+												<div class="input-group">
+													<span class="input-group-text" id="basic-addon1"><i
+														class="bi bi-box"></i></span> <input type="text"
+														class="form-control" placeholder="Tên sản phẩm"
+														th:field="*{name}">
+												</div>
+												<span class="badge rounded-pill bg-danger"
+													th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="category" class="col-sm-4 col-form-label">Danh
+												mục</label>
+											<div class="col-sm-8">
+												<select class="form-select" th:field="*{categoryId}">
+													<option th:each="item, i : ${categories}"
+														th:value="${item.id}" th:text="${item.name}"
+														th:selected="${item.id == categoryId}">One</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="brand" class="col-sm-4 col-form-label">Thương
+												hiệu</label>
+											<div class="col-sm-8">
+												<select class="form-select" th:field="*{brandId}">
+													<option th:each="item, i : ${brands}" th:value="${item.id}"
+														th:text="${item.name}" th:selected="${item.id == brandId}">One</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="quantity" class="col-sm-4 col-form-label">Số
+												lượng</label>
+											<div class="col-sm-8">
+												<div class="input-group">
+													<span class="input-group-text" id="basic-addon1">N</span> <input
+														type="number" class="form-control" min="0" step="1"
+														th:field="*{quantity}">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="color" class="col-sm-4 col-form-label">Màu
+												sắc</label>
+											<div class="col-sm-8">
+												<select class="form-select" th:field="*{color}">
+													<option value="#000000">Đen</option>
+													<option value="#ffffff">Trắng</option>
+													<option value="#0419f7">Xanh dương</option>
+													<option value="#ff0000">Đỏ</option>
+													<option value="#fff200">Vàng</option>
+													<option value="#00ff11">Xanh lá</option>
+													<option value="#f200ff">Tím</option>
+													<option value="#fc05b2">Hồng</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="price" class="col-sm-2 col-form-label">Giá</label>
+											<div class="col-sm-10">
+												<div class="input-group">
+													<span class="input-group-text">VND .000</span> <input
+														type="number" class="form-control" th:field="*{price}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="discount" class="col-sm-4 col-form-label">Giảm
+												giá</label>
+											<div class="col-sm-8">
+												<div class="input-group">
+													<span class="input-group-text" id="basic-addon1">%</span> <input
+														type="number" class="form-control" min="0" step="0.1"
+														max="100" th:field="*{discount}">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="startDayDiscount" class="col-sm-4 col-form-label">Ngày
+												bắt đầu</label>
+											<div class="col-sm-8">
+												<div class="input-group">
+													<input type="date" class="form-control"
+														th:field="*{startDayDiscount}">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<label for="endDayDiscount" class="col-sm-4 col-form-label">Ngày
+												kết thúc</label>
+											<div class="col-sm-8">
+												<div class="input-group">
+													<input type="date" class="form-control"
+														th:field="*{endDayDiscount}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="description" class="col-sm-2 col-form-label">Mô
+										tả</label>
+									<div class="col-sm-10">
+										<textarea class="tinymce-editor form-control"
+											th:field="*{description}"></textarea>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="info" class="col-sm-2 col-form-label">Thông
+										tin sản phẩm</label>
+									<div class="col-sm-10">
+										<textarea class="tinymce-editor form-control"
+											th:field="*{info}"></textarea>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<label for="images" class="col-sm-2 col-form-label">Hình
+										ảnh</label>
+									<div class="col-sm-10">
+										<input class="form-control" type="file" name="files"
+											id="files" multiple="">
+									</div>
+								</div>
+								<div id="gallery">
+									<!--  -->
+								</div>
+
+							</div>
+
+							<div class="row mb-3">
+								<div class="col-sm-10 offset-sm-2">
+									<button type="submit" class="btn btn-primary">Xác nhận</button>
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

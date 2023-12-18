@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Người dùng</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Người dùng</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/users}">Danh
+							sách</a></li>
+					<li class="breadcrumb-item"><a
+						th:href="@{/users/saveOrUpdate}">Thêm mới</a></li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+
+					<div class="card">
+						<div class="card-body">
+							<div class="row mt-2">
+								<div class="col-sm-2 col-lg-2">
+									<form
+										th:action="@{/users(field=${field}, keywords=${keywords})}">
+										<label for=""> <select class="form-select" name="size"
+											id="size" onchange="this.form.submit()">
+												<option value="5" th:selected="${resultPage.size == 5}">5</option>
+												<option value="10" th:selected="${resultPage.size == 10}">10</option>
+												<option value="15" th:selected="${resultPage.size == 15}">15</option>
+												<option value="20" th:selected="${resultPage.size == 20}">20</option>
+												<option value="25" th:selected="${resultPage.size == 25}">25</option>
+										</select>
+										</label>
+									</form>
+								</div>
+								<div class="col-sm8 col-lg-8"></div>
+								<div class="col-sm-2 col-lg-2 justify-content-end">
+									<form th:action="@{/users(field=${field}, size=${size})}">
+										<div class="input-group mb-3">
+											<input type="text" class="form-control" name="keywords"
+												id="keywords" placeholder="Tìm kiếm theo tên đăng nhập"
+												th:value="${keywords}">
+											<button class="btn btn-outline-secondary" type="submit">
+												<i class="bi bi-search"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+
+							<!-- Default Table -->
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col"><a
+											th:href="@{/users(field=username, size=${size}, keywords=${keywords})}">Tên
+												đăng nhập</a></th>
+										<th scope="col"><a
+											th:href="@{/users(field=email, size=${size}, keywords=${keywords})}">Email</a></th>
+										<th scope="col"><a
+											th:href="@{/users(field=lastName, size=${size}, keywords=${keywords})}">Họ
+												và tên</a></th>
+										<th scope="col"><a
+											th:href="@{/users(field=birthDay, size=${size}, keywords=${keywords})}">Ngày
+												sinh</a></th>
+										<th scope="col"><a
+											th:href="@{/users(field=gender, size=${size}, keywords=${keywords})}">Giới
+												tính</a></th>
+										<th scope="col"><a
+											th:href="@{/users(field=login, size=${size}, keywords=${keywords})}">Truy
+												cập</a></th>
+										<th scope="col"><a
+											th:href="@{/users(field=lastLoginDate, size=${size}, keywords=${keywords})}">Truy
+												cập lần cuối</a></th>
+										<th scope="col">Hình ảnh</th>
+										<th scope="col"><a
+											th:href="@{/users(field=role, size=${size}, keywords=${keywords})}">Chức
+												vụ</a></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="item, i : ${resultPage.content}">
+										<th scope="row" th:text="${i.count}"></th>
+										<td th:text="${item.username}"></td>
+										<td th:text="${item.email}"></td>
+										<td
+											th:text="${item.firstName} != null ? ${item.firstName} + ' ' + ${item.lastName}:'Chưa cập nhật...'"></td>
+										<td
+											th:text="${item.birthDay} != null ? ${#dates.format(item.birthDay, 'dd-MM-yyyy')}:'Chưa cập nhật...'"></td>
+										<td><span th:if="${item.gender == null}">Chưa cập
+												nhật...</span> <i th:if="${item.gender != null}"
+											th:class="${item.gender} == true ? 'bi bi-gender-male' : 'bi bi-gender-female'"></i>
+										</td>
+										<td><span th:if="${item.login}" class="badge bg-success">Cho
+												phép</span> <span th:if="${!item.login}" class="badge bg-danger">Ngăn
+												chặn</span></td>
+										<td
+											th:text="${item.lastLoginDate} != null ? ${#dates.format(item.lastLoginDate, 'dd-MM-yyyy')}:'Chưa đăng nhập...'"></td>
+										<td>
+											<div class="card" style="max-width: 150px;">
+												<img
+													th:src="${item.avatar} == null ? '/admin/assets/img/no-image.jpg' : '/uploads/' + ${item.avatar}"
+													class="card-img-top" style="max-width: 150px;" alt="...">
+											</div>
+										</td>
+										<td><span
+											th:text="${item.role.toString} == 'ROLE_ADMIN' ? 'Admin' : 'Người dùng'"
+											th:class="${item.role.toString} == 'ROLE_ADMIN' ? 'badge bg-success' : 'badge bg-danger'"></span></td>
+										<td>
+											<div class="btn-group" role="group">
+												<button type="button" class="btn btn-info"
+													data-bs-toggle="modal" data-bs-target="#viewUser"
+													th:data-id="${item.id}"
+													th:onclick="viewUser(this.getAttribute('data-id'))">
+													<i class="bi bi-eye"></i>
+												</button>
+												<a type="button" class="btn btn-warning"
+													th:href="@{/users/edit(id=${item.id})}"> <i
+													class="bi bi-pen"></i>
+												</a>
+												<button type="button" class="btn btn-danger"
+													th:data-id="${item.id}" th:data-name="${item.username}"
+													th:onclick="deleteUser(this.getAttribute('data-id'),this.getAttribute('data-name'))">
+													<i class="bi bi-trash"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- End Default Table Example -->
+
+							<nav aria-label="Page navigation example"
+								th:if="${resultPage.totalPages > 0}">
+								<ul class="pagination justify-content-center">
+									<li
+										th:class="${resultPage.number + 1 == 1} ? 'page-item active' : 'page-item'">
+										<a class="page-link"
+										th:href="@{/users(field=${field}, page=${1}, size=${resultPage.size}, keywords=${keywords})}"
+										tabindex="-1" aria-disabled="true">Previous</a>
+									</li>
+
+									<li th:each=" pageNumber : ${pageNumbers}"
+										th:if="${resultPage.totalPages > 1}"
+										th:class="${pageNumber == resultPage.number + 1} ? 'page-item active' : 'page-item'">
+										<a class="page-link"
+										th:href="@{/users(field=${field}, page=${pageNumber}, size=${resultPage.size}, keywords=${keywords})}"
+										th:text="${pageNumber}">1</a>
+									</li>
+
+									<li
+										th:class="${resultPage.number + 1 == resultPage.totalPages} ? 'page-item active' : 'page-item'">
+										<a class="page-link"
+										th:href="@{/users(field=${field}, page=${resultPage.totalPages}, size=${resultPage.size}, keywords=${keywords})}">Next</a>
+									</li>
+								</ul>
+							</nav>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+		<div class="modal fade" id="viewUser" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Thông tin người dùng</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="bodyViewUser"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Đóng</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

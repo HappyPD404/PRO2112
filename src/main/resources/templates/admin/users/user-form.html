@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Người dùng</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Người dùng</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/users}">Danh
+							sách</a></li>
+					<li class="breadcrumb-item active">Nhập người dùng</li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+
+					<form th:action="@{/users/saveOrUpdate/submit}" method="POST"
+						th:object="${userDto}" enctype="multipart/form-data">
+						<input type="hidden" th:field="*{id}">
+						<div class="card">
+							<div class="card-body mt-3">
+								<div class="row mb-3">
+									<label for="username" class="col-sm-2 col-form-label">Username</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon1"><i
+												class="bi bi-person-fill"></i></span> <input type="text"
+												class="form-control" placeholder="Tên đăng nhập"
+												th:field="*{username}">
+										</div>
+										<span class="badge rounded-pill bg-danger"
+											th:if="${#fields.hasErrors('username')}"
+											th:errors="*{username}"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="email" class="col-sm-2 col-form-label">Email</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon1"><i
+												class="bi bi-envelope"></i></span> <input type="text"
+												class="form-control" placeholder="Email" th:field="*{email}">
+										</div>
+										<span class="badge rounded-pill bg-danger"
+											th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="firstName" class="col-sm-2 col-form-label">Họ</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" placeholder="Họ"
+											th:field="*{firstName}"> <span
+											class="badge rounded-pill bg-danger"
+											th:if="${#fields.hasErrors('firstName')}"
+											th:errors="*{firstName}"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="lastName" class="col-sm-2 col-form-label">Tên</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" placeholder="Tên"
+											th:field="*{lastName}"> <span
+											class="badge rounded-pill bg-danger"
+											th:if="${#fields.hasErrors('lastName')}"
+											th:errors="*{lastName}"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label class="col-sm-2 col-form-label">Địa chỉ</label>
+									<div class="col-sm-10">
+										<input for="address" type="text" class="form-control"
+											placeholder="Địa chỉ" th:field="*{address}"> <span
+											class="badge rounded-pill bg-danger"
+											th:if="${#fields.hasErrors('address')}"
+											th:errors="*{address}"></span>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="birthDay" class="col-sm-2 col-form-label">Ngày
+										sinh</label>
+									<div class="col-sm-10">
+										<input type="date" class="form-control" th:field="*{birthDay}">
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-4">
+										<fieldset class="row justify-content-center">
+											<legend class="col-form-label col-sm-4 pt-0">Giới
+												tính</legend>
+											<div class="col-sm-8">
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="gender"
+														id="male" th:field="*{gender}" th:value="true"
+														th:checked="${gender} == true ? true : false"> <label
+														class="form-check-label" for="male"> Nam </label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="gender"
+														id="female" th:field="*{gender}" th:value="false"
+														th:checked="${gender} == false ? true : false"> <label
+														class="form-check-label" for="female"> Nữ </label>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+									<div class="col-sm-4">
+										<fieldset class="row justify-content-center">
+											<legend class="col-form-label col-sm-4 pt-0">Truy
+												cập</legend>
+											<div class="col-sm-8">
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="access"
+														id="login" th:field="*{login}" th:value="true"
+														th:checked="${login} == true ? true : false"> <label
+														class="form-check-label" for="login"> Cho phép </label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="access"
+														id="block" th:field="*{login}" th:value="false"
+														th:checked="${login} == false ? true : false"> <label
+														class="form-check-label" for="block"> Ngăn chặn </label>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+									<div class="col-sm-4">
+										<fieldset class="row justify-content-center">
+											<legend class="col-form-label col-sm-4 pt-0">Chức vụ</legend>
+											<div class="col-sm-8">
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="role"
+														id="admin" th:field="*{role}" th:value="true"
+														th:checked="${role} == true ? true : false"> <label
+														class="form-check-label" for="admin"> Admin </label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="role"
+														id="user" th:field="*{role}" th:value="false"
+														th:checked="${role} == false ? true : false"> <label
+														class="form-check-label" for="user"> Người dùng </label>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="avatar" class="col-sm-2 col-form-label">Hình
+										ảnh</label>
+									<div class="col-sm-10">
+										<input class="form-control" type="file" id="file" name="file"
+											onchange="readImageUser(this);">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4 offset-sm-4">
+										<div class="card">
+											<img id="avatar" src="/admin/assets/img/no-image.jpg"
+												class="card-img-top" alt="...">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-10 offset-sm-2">
+
+									<button type="submit" class="btn btn-primary">Xác nhận</button>
+
+								</div>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

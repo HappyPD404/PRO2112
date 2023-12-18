@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">
+		Beauty Care</title>
+	<meta name="keywords" content="HTML5 Template">
+	<meta name="description" content="Molla - Bootstrap eCommerce Template">
+	<meta name="author" content="p-themes">
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" th:href="@{/shop/assets/images/icons/apple-touch-icon.png}">
+	<link rel="icon" type="image/png" sizes="32x32" th:href="@{/shop/assets/images/icons/favicon-32x32.png}">
+	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/shop/assets/images/icons/favicon-16x16.png}">
+	<link rel="shortcut icon" th:href="@{/shop/assets/images/icons/favicon.ico}">
+	<meta name="apple-mobile-web-app-title" content="Molla">
+	<meta name="application-name" content="Molla">
+	<link rel="stylesheet"
+		th:href="@{/shop/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css}">
+	<!-- Google Fonts -->
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+	<!-- Plugins CSS File -->
+	<link rel="stylesheet" th:href="@{/shop/assets/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/plugins/owl-carousel/owl.carousel.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/plugins/magnific-popup/magnific-popup.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/plugins/jquery.countdown.css}">
+	<!-- Main CSS File -->
+	<link rel="stylesheet" th:href="@{/shop/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/plugins/owl-carousel/owl.carousel.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/plugins/magnific-popup/magnific-popup.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/plugins/nouislider/nouislider.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/skins/skin-demo-14.css}">
+	<link rel="stylesheet" th:href="@{/shop/assets/css/demos/demo-14.css}">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel="stylesheet" th:href="@{/shop/assets/css/quick-view.css}">
+</head>
+
+<body>
+	<div class="page-wrapper">
+
+		<div th:replace="shop/fragments/header:: header"></div>
+
+		<main class="main">
+
+			<div layout:fragment="content"></div>
+
+		</main>
+		<!-- End .main -->
+
+		<div th:replace="shop/fragments/footer:: footer"></div>
+
+	</div>
+	<!-- End .page-wrapper -->
+	<button id="scroll-top" title="Back to Top">
+		<i class="icon-arrow-up"></i>
+	</button>
+
+	<!-- Mobile Menu -->
+	<div class="mobile-menu-overlay"></div>
+	<!-- End .mobil-menu-overlay -->
+	<div th:replace="shop/fragments/mobile-menu:: mobile-menu"></div>
+
+	<div th:replace="shop/fragments/signin-modal:: signin-modal"></div>
+
+	<div th:replace="shop/fragments/quick-view:: quick-view"></div>
+
+	<div th:replace="shop/fragments/order-view:: order-view"></div>
+
+	<!-- Plugins JS File -->
+	<script th:src="@{/shop/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/shop/assets/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.hoverIntent.min.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.waypoints.min.js}"></script>
+	<script th:src="@{/shop/assets/js/superfish.min.js}"></script>
+	<script th:src="@{/shop/assets/js/owl.carousel.min.js}"></script>
+	<script th:src="@{/shop/assets/js/bootstrap-input-spinner.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.magnific-popup.min.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.plugin.min.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.countdown.min.js}"></script>
+	<script th:src="@{/shop/assets/js/nouislider.min.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.elevateZoom.min.js}"></script>
+	<script th:src="@{/shop/assets/js/bootstrap-input-spinner.js}"></script>
+	<script th:src="@{/shop/assets/js/jquery.sticky-kit.min.js}"></script>
+	<!-- Main JS File -->
+	<script th:src="@{/shop/assets/js/main.js}"></script>
+	<script th:src="@{/shop/assets/js/demos/demo-14.js}"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script th:src="@{/shop/assets/api-all.js}"></script>
+	<script th:src="@{/shop/assets/quick-view.js}"></script>
+	<script th:src="@{/shop/assets/auth.js}"></script>
+	<script th:src="@{/shop/assets/cart.js}"></script>
+	<script th:src="@{/shop/assets/view-cart.js}"></script>
+	<script th:src="@{/shop/assets/info-account.js}"></script>
+	<script th:src="@{/shop/assets/like.js}"></script>
+	<script th:src="@{/shop/assets/order-view.js}"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		var error = /*[[${error}]]*/ '';
+		if (error !== null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thông báo lỗi',
+				text: error,
+			})
+		}
+
+		var message = /*[[${message}]]*/ '';
+		if (message !== null) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Thông báo',
+				text: message,
+			})
+		}
+		/*]]>*/
+	</script>
+</body>
+
+</html>

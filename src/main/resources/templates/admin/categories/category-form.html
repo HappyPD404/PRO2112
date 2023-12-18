@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout.html}">
+
+<head>
+<title>Danh mục</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="pagetitle">
+			<h1>Danh mục</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/categories}">Danh
+							sách</a></li>
+					<li class="breadcrumb-item active">Nhập danh mục</li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section dashboard">
+			<div class="row">
+
+				<div class="col-lg-12">
+
+					<form th:action="@{/categories/saveOrUpdate/submit}" method="POST"
+						th:object="${categoryDto}">
+						<input type="hidden" th:field="*{id}">
+						<div class="card">
+							<div class="card-body mt-3">
+								<div class="row mb-3">
+									<label for="name" class="col-sm-2 col-form-label">Tên
+										danh mục</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon1"><i
+												class="bi bi-tag-fill"></i></span> <input type="text"
+												class="form-control" placeholder="Tên danh mục"
+												th:field="*{name}">
+										</div>
+										<span class="badge rounded-pill bg-danger"
+											th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+									</div>
+								</div>
+
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-10 offset-sm-2">
+
+									<button type="submit" class="btn btn-primary">Xác nhận</button>
+
+								</div>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>
